@@ -18,11 +18,13 @@ class TcbServerWS {
 
     constructor(server, options = {}) {
 
-        let namespace = options.namespace || '/';
+        this.server = server;
+        this.namespace = options.namespace || '/';
+        this.options = options;
 
-        this.io = socketIO(server, {
+        this.io = this.io = socketIO(server, {
             ...options
-        }).of(namespace);
+        }).of(this.namespace);
 
         this.sockets = {};
 
@@ -45,23 +47,24 @@ class TcbServerWS {
     }
 
     /**
-     * 建立 WebSocket 连接
+     * 监听是否有客户端的链接尝试建立
      * @param {Object} param
-     * @param {Function} param.open 建立连接回调
-     * @param {Function} param.closing 正在断开连接回调
-     * @param {Function} param.close 断开连接回调
+     * @param {Function} param.connect 客户端成功与服务端建立连接回调
+     * @param {Function} param.disconnecting 客户端与服务端正在断开连接回调
+     * @param {Function} param.disconnect 客户端与服务端断开连接回调
+     * @param {Function} param.error 错误信息回调
      */
-    open({ open = null, closing = null, close = null, error = null } = {}) {
-        this.io.on('connection', (socket) => {
+    open({ connect = null, disconnecting = null, disconnect = null, error = null } = {}) {
+        this.io.on('connect', (socket) => {
             if (!this.sockets.hasOwnProperty(socket.id)) {
                 this.sockets[socket.id] = socket;
             }
 
-            utils.isFunction(open) && open.bind(this)(socket);
+            utils.isFunction(connect) && connect.bind(this)(socket);
 
             // 监听正在断开连接的事件
             socket.on('disconnecting', () => {
-                utils.isFunction(closing) && closing.bind(this)(socket);
+                utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
             });
 
             // 监听已经断开连接的事件
@@ -69,7 +72,7 @@ class TcbServerWS {
                 if (this.sockets.hasOwnProperty(socket.id)) {
                     delete this.sockets[socket.id];
                 }
-                utils.isFunction(close) && close.bind(this)(socket);
+                utils.isFunction(disconnect) && disconnect.bind(this)(socket);
             });
 
             // 监听报错事件
@@ -80,7 +83,7 @@ class TcbServerWS {
     }
 
     /**
-     * 关闭 WebSocket 连接
+     * 服务端 socket 断开服务
      * @param {Object} socket socket 对象
      */
     close(socket) {

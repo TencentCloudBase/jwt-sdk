@@ -26,7 +26,7 @@
 | 字段 | 类型 | 说明
 | --- | --- | ---
 | io | object | 由 [`require('socket.io').` `new`](https://socket.io/docs/server-api/#Server) 出来的对象
-| socket | object | socket.io 的 [Socket](https://socket.io/docs/server-api/#Socket) 对象
+| sockets | object | 记录 socket.io 的 [Socket](https://socket.io/docs/server-api/#Socket) 对象
 | tcb | object | [`tcb-admin-node`](https://github.com/TencentCloudBase/tcb-admin-node) 初始化后的对象
 
 ### 示例
@@ -45,7 +45,7 @@ const tcbServerWS = new TcbServerWS(server, { namespace: '/tcb/', config });
 
 ## open
 
-建立 WebSocket 连接
+启动服务器，并监听是否有客户端的链接尝试建立
 
 ### 参数说明
 
@@ -57,10 +57,10 @@ const tcbServerWS = new TcbServerWS(server, { namespace: '/tcb/', config });
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| open | function | 否 | | 成功连接回调
-| close | function | 否 | | 断开连接回调
-| closing | function | 否 | | 正在断开连接回调
-| error | function | 否 | | 错误信息回调
+| connect | function | 否 | | 客户端成功与服务端建立连接回调 [connect](https://socket.io/docs/server-api/#Event-%E2%80%98connect%E2%80%99)
+| disconnecting | function | 否 | | 客户端与服务端正在断开连接回调 [disconnecting](https://socket.io/docs/server-api/#Event-%E2%80%98disconnecting%E2%80%99)
+| disconnect | function | 否 | | 客户端与服务端断开连接回调 [disconnect](https://socket.io/docs/server-api/#Event-%E2%80%98disconnect%E2%80%99)
+| error | function | 否 | | 错误信息回调 [error](https://socket.io/docs/server-api/#Event-%E2%80%98error%E2%80%99)
 
 * 示例
 ```js
@@ -82,7 +82,7 @@ tcbServerWS.open({
 
 ## close
 
-断开 WebSocket 连接
+服务端 socket 断开服务
 
 ### 参数说明
 

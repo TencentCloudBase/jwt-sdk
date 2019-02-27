@@ -88,7 +88,7 @@ tcbServerWS.io.use(async (socket, next) => {
 });
 
 tcbServerWS.open({
-    open: async (socket) => {
+    connect: async (socket) => {
         const { user = {}} = socket;
         console.log('connect ' + socket.id);
         appData.sockets[socket.id] = {
@@ -186,7 +186,10 @@ tcbServerWS.open({
         });
 
     },
-    close: async (socket) => {
+    disconnecting: (socket) => {
+        console.log('disconnecting ' + socket.id);
+    },
+    disconnect: async (socket) => {
         const { user = {}} = socket;
         console.log('disconnect ' + socket.id);
         let roomID = appData.sockets[socket.id].room;
