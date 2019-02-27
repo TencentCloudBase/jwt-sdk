@@ -3,8 +3,9 @@
 ## 1. 前置条件
 
 * 安装 `Node` 和 `npm`
-* 安装[微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)最新版本
-* 获取 `secretId` 和 `secretKey`。通过此[链接](https://www.qcloud.com/login/mp?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Fcam%2Fcapi)登录小程序对应的腾讯云帐号(需要小程序管理员权限)，然后在[云API密钥](https://console.cloud.tencent.com/cam/capi) 里获取。
+* 安装[微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)最新版本。
+* 在微信开发者工具中，点击左上角 “云开发” 菜单，开通小程序·云开发能力。
+* 获取 `secretId` 和 `secretKey`。通过此[链接](https://www.qcloud.com/login/mp?s_url=https%3A%2F%2Fconsole.cloud.tencent.com%2Fcam%2Fcapi)登录小程序对应的腾讯云帐号(需要小程序管理员或拥有者权限)，然后在[云API密钥](https://console.cloud.tencent.com/cam/capi) 里获取。
 
 ![](https://main.qcloudimg.com/raw/63512b321eee6c8779d6cb5b20f641cf.png)
 
