@@ -1,0 +1,5 @@
+node_modules
+*.log
+/demo/miniprogram/server/config/index.js
+/demo/miniprogram/server/static/config/index.js
+.DS_Store

@@ -1,0 +1,48 @@
+{
+  "name": "tcb-websocket-sdk",
+  "version": "0.0.1",
+  "description": "tcb websocket sdk for node and javascript",
+  "main": "./dist/tcb-websocket-node-sdk/index.js",
+  "scripts": {
+    "dist": "rollup -c ./tools/rollup.base.js --environment INCLUDE_DEPS,BUILD:production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.code.oa.com/QBase/tcb-websocket-js-sdk.git"
+  },
+  "keywords": [
+    "tencent",
+    "cloud",
+    "base",
+    "websocket"
+  ],
+  "author": "heyli",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.12.1",
+    "eslint-config-alloy": "^1.4.2",
+    "koa": "^2.6.2",
+    "koa-static": "^5.0.0",
+    "node-dev": "^3.1.3",
+    "rollup": "^1.1.2",
+    "rollup-copy-plugin": "^0.1.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-copy": "^0.2.3",
+    "rollup-plugin-node-resolve": "^4.0.0"
+  },
+  "dependencies": {
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "tcb-admin-node": "^1.4.3",
+    "weapp.socket.io": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  }
+}
