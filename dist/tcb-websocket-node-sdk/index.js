@@ -17,6 +17,7 @@ const Tcb = require('tcb-admin-node');
 class TcbServerWS {
 
     constructor(server, options = {}) {
+
         this.server = server;
         this.namespace = options.namespace || '/';
         this.options = options;
@@ -55,22 +56,6 @@ class TcbServerWS {
      */
     async open({ connect = null, disconnecting = null, disconnect = null, error = null } = {}) {
         this.io.on('connect', async (socket) => {
-            let token = socket.handshake.query.token;
-
-            let res = (await this.verifyLogin(token));
-
-            if (res.code || res.result.code) {
-                socket.disconnect(true);
-                throw (new Error(res.code || res.result.code));
-            } else {
-                socket.user = res;
-            }
-            if (!this.sockets.hasOwnProperty(socket.id)) {
-                this.sockets[socket.id] = socket;
-            }
-
-            utils.isFunction(connect) && connect.bind(this)(socket);
-
             // 监听正在断开连接的事件
             socket.on('disconnecting', () => {
                 utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
@@ -85,9 +70,27 @@ class TcbServerWS {
             });
 
             // 监听报错事件
-            socket.on('error', (err) => {
-                utils.isFunction(error) && error.bind(this)(err);
+            socket.on('error', (err, socket) => {
+                utils.isFunction(error) && error.bind(this)(err, socket);
             });
+
+            // 鉴权
+            let token = socket.handshake.query.token;
+            let res = (await this.verifyLogin(token));
+            if (res.code || res.result.code) {
+                const err = new Error(res.code || res.result.code);
+                utils.isFunction(error) && error.bind(this)(err, socket);
+                socket.disconnect(true);
+                return;
+            } else {
+                socket.user = res;
+            }
+            if (!this.sockets.hasOwnProperty(socket.id)) {
+                this.sockets[socket.id] = socket;
+            }
+
+            // 客户端连接成功的事件回调
+            utils.isFunction(connect) && connect.bind(this)(socket);
         });
     }
 
