@@ -17,7 +17,6 @@ class TcbServerWS {
         this.sockets = {};
 
         this.tcb = Tcb.init(options.config);
-
     }
 
     /**
@@ -35,6 +34,27 @@ class TcbServerWS {
     }
 
     /**
+     * 自动帮助用户校验登陆
+     * @param {Socket} socket
+     */
+    async _autoVerifyLogin(socket) {
+        let token = socket.handshake.query.token;
+
+        if (!token) {
+            throw new Error('Token is empty.');
+        }
+
+        let res = (await this.verifyLogin(token));
+        if (res.code || res.result.code) {
+            throw new Error(res.code || res.result.code);
+        }
+        else {
+            // 将用户信息存放到内存里了
+            socket.user = res;
+        }
+    }
+
+    /**
      * 监听是否有客户端的链接尝试建立
      * @param {Object} param
      * @param {Function} param.connect 客户端成功与服务端建立连接回调
@@ -42,43 +62,43 @@ class TcbServerWS {
      * @param {Function} param.disconnect 客户端与服务端断开连接回调
      * @param {Function} param.error 错误信息回调
      */
-    async open({ connect = null, disconnecting = null, disconnect = null, error = null } = {}) {
+    async open({ connect = null, disconnecting = null, disconnect = null, error = null, isAutoLogin = true } = {}) {
         this.io.on('connect', async (socket) => {
-            // 监听正在断开连接的事件
-            socket.on('disconnecting', () => {
-                Utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
-            });
+            try {
+                // 监听正在断开连接的事件
+                socket.on('disconnecting', () => {
+                    Utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
+                });
 
-            // 监听已经断开连接的事件
-            socket.on('disconnect', () => {
-                if (this.sockets.hasOwnProperty(socket.id)) {
-                    delete this.sockets[socket.id];
+                // 监听已经断开连接的事件
+                socket.on('disconnect', () => {
+                    if (this.sockets.hasOwnProperty(socket.id)) {
+                        delete this.sockets[socket.id];
+                    }
+                    Utils.isFunction(disconnect) && disconnect.bind(this)(socket);
+                });
+
+                // 监听报错事件
+                socket.on('error', (err, socket) => {
+                    Utils.isFunction(error) && error.bind(this)(err, socket);
+                });
+
+                // 鉴权
+                if (isAutoLogin) {
+                    this._autoVerifyLogin(socket);
                 }
-                Utils.isFunction(disconnect) && disconnect.bind(this)(socket);
-            });
 
-            // 监听报错事件
-            socket.on('error', (err, socket) => {
-                Utils.isFunction(error) && error.bind(this)(err, socket);
-            });
+                if (!this.sockets.hasOwnProperty(socket.id)) {
+                    this.sockets[socket.id] = socket;
+                }
 
-            // 鉴权
-            let token = socket.handshake.query.token;
-            let res = (await this.verifyLogin(token));
-            if (res.code || res.result.code) {
-                const err = new Error(res.code || res.result.code);
-                Utils.isFunction(error) && error.bind(this)(err, socket);
-                socket.disconnect(true);
-                return;
-            } else {
-                socket.user = res;
+                // 客户端连接成功的事件回调
+                Utils.isFunction(connect) && connect.bind(this)(socket);
             }
-            if (!this.sockets.hasOwnProperty(socket.id)) {
-                this.sockets[socket.id] = socket;
+            catch (e) {
+                Utils.isFunction(error) && error.bind(this)(e, socket);
+                this.close(socket);
             }
-
-            // 客户端连接成功的事件回调
-            Utils.isFunction(connect) && connect.bind(this)(socket);
         });
     }
 

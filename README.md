@@ -1,4 +1,4 @@
-# tcb-websocket-js-sdk
+# websocket-sdk
 
 ## 体验
 * [开发环境体验 Demo](/docs/guide-dev.md)

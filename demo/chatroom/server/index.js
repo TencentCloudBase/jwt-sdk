@@ -73,19 +73,19 @@ async function sendMessage(socket, { roomID, event, msgRoom, msgSelf }) {
     });
 }
 
-tcbServerWS.io.use(async (socket, next) => {
-    let token = socket.handshake.query.token;
+// tcbServerWS.io.use(async (socket, next) => {
+//     let token = socket.handshake.query.token;
 
-    let res = (await tcbServerWS.verifyLogin(token)).result;
-    // console.log(res);
+//     let res = (await tcbServerWS.verifyLogin(token)).result;
+//     // console.log(res);
 
-    if (res.code) {
-        return next(new Error(res.code));
-    } else {
-        socket.user = res;
-        return next();
-    }
-});
+//     if (res.code) {
+//         return next(new Error(res.code));
+//     } else {
+//         socket.user = res;
+//         return next();
+//     }
+// });
 
 tcbServerWS.open({
     connect: async (socket) => {

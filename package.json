@@ -2,7 +2,7 @@
   "name": "@cloudbase/websocket-sdk",
   "version": "0.0.1",
   "description": "tcb websocket sdk for node and javascript",
-  "main": "./dist/tcb-websocket-node-sdk/index.js",
+  "main": "./dist/websocket-node-sdk/index.js",
   "scripts": {
     "dist": "rollup -c ./tools/rollup.base.js --environment INCLUDE_DEPS,BUILD:production"
   },
