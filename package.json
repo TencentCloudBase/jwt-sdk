@@ -1,5 +1,5 @@
 {
-  "name": "tcb-websocket-sdk",
+  "name": "@cloudbase/tcb-websocket-sdk",
   "version": "0.0.1",
   "description": "tcb websocket sdk for node and javascript",
   "main": "./dist/tcb-websocket-node-sdk/index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://git.code.oa.com/QBase/tcb-websocket-js-sdk.git"
+    "url": "http://github.com/TencentCloudBase/tcb-websocket-sdk.git"
   },
   "keywords": [
     "tencent",
