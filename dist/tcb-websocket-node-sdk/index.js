@@ -54,14 +54,8 @@ class TcbServerWS {
      * @param {Function} param.disconnect 客户端与服务端断开连接回调
      * @param {Function} param.error 错误信息回调
      */
-    open({ connect = null, disconnecting = null, disconnect = null, error = null } = {}) {
-        this.io.on('connect', (socket) => {
-            if (!this.sockets.hasOwnProperty(socket.id)) {
-                this.sockets[socket.id] = socket;
-            }
-
-            utils.isFunction(connect) && connect.bind(this)(socket);
-
+    async open({ connect = null, disconnecting = null, disconnect = null, error = null } = {}) {
+        this.io.on('connect', async (socket) => {
             // 监听正在断开连接的事件
             socket.on('disconnecting', () => {
                 utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
@@ -76,9 +70,27 @@ class TcbServerWS {
             });
 
             // 监听报错事件
-            socket.on('error', (err) => {
-                utils.isFunction(error) && error.bind(this)(err);
+            socket.on('error', (err, socket) => {
+                utils.isFunction(error) && error.bind(this)(err, socket);
             });
+
+            // 鉴权
+            let token = socket.handshake.query.token;
+            let res = (await this.verifyLogin(token));
+            if (res.code || res.result.code) {
+                const err = new Error(res.code || res.result.code);
+                utils.isFunction(error) && error.bind(this)(err, socket);
+                socket.disconnect(true);
+                return;
+            } else {
+                socket.user = res;
+            }
+            if (!this.sockets.hasOwnProperty(socket.id)) {
+                this.sockets[socket.id] = socket;
+            }
+
+            // 客户端连接成功的事件回调
+            utils.isFunction(connect) && connect.bind(this)(socket);
         });
     }
 
