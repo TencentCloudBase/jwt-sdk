@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "client/",
 	"cloudfunctionRoot": "cloud/functions/",
-  "qcloudRoot": "cloud/server",
+	"qcloudRoot": "cloud/server/",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
