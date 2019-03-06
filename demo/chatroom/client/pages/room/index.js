@@ -1,5 +1,5 @@
 import regeneratorRuntime from '../../libs/runtime'
-import TcbClientWS from '../../libs/tcb-websocket-mp-sdk/index'
+import TcbClientWS from '../../libs/websocket-mp-sdk/index'
 import config from '../../config/index.js'
 
 Page({

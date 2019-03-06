@@ -3852,11 +3852,21 @@ var weapp_socket_io = createCommonjsModule(function (module, exports) {
 
 var io = unwrapExports(weapp_socket_io);
 
+// eslint-disable-next-line no-unused-vars
+var regeneratorRuntime = require('./polyfill');
+
 var Auth =
   /*#__PURE__*/
   function () {
-    function Auth(storageKey) {
-      this.storageKey = storageKey || 'tcb-token';
+    function Auth(options) {
+      if (options === void 0) {
+        options = {};
+      }
+
+      var _options = options,
+        _options$storageKey = _options.storageKey,
+        storageKey = _options$storageKey === void 0 ? 'tcb-token' : _options$storageKey;
+      this.storageKey = storageKey;
 
       if (typeof wx !== 'undefined') {
         this.isMiniprogram = true;
@@ -3880,30 +3890,60 @@ var Auth =
     }
       /**
        * 小程序用户鉴权
-       * @param {Object} userInfo 小程序用户信息
+       * @param {object} userInfo 小程序用户信息
+       * @return {string} 用户 jwt token
        */
       ;
 
-    _proto.login = function login(userInfo) {
-      var _this = this;
+    _proto.login =
+      /*#__PURE__*/
+      function () {
+        var _login = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee(userInfo) {
+            var r, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return wx.cloud.callFunction({
+                      name: 'auth',
+                      data: {
+                        action: 'login',
+                        data: userInfo
+                      }
+                    });
 
-      return wx.cloud.callFunction({
-        name: 'auth',
-        data: {
-          action: 'login',
-          data: userInfo
-        }
-      }).then(function (r) {
-        var res = r.result;
+                  case 2:
+                    r = _context.sent;
+                    res = r.result;
 
-        if (res.data) {
-          wx.setStorageSync(_this.storageKey, res.data.token);
-          return res.data.token;
-        } else {
-          throw new Error('login failed');
+                    if (!res.data) {
+                      _context.next = 9;
+                      break;
+                    }
+
+                    wx.setStorageSync(this.storageKey, res.data.token);
+                    return _context.abrupt("return", res.data.token);
+
+                  case 9:
+                    throw new Error('Login Failed');
+
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+        function login(_x) {
+          return _login.apply(this, arguments);
         }
-      });
-    }
+
+        return login;
+      }()
       /**
        * 小程序用户登出
        */
@@ -3913,7 +3953,140 @@ var Auth =
       if (this.isMiniprogram) {
         wx.removeStorageSync(this.storageKey);
       }
-    };
+    } // 首次授权后，可自动获取用户信息并登陆
+      ;
+
+    _proto.autoLogin =
+      /*#__PURE__*/
+      function () {
+        var _autoLogin = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee2() {
+            var _this = this;
+
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    return _context2.abrupt("return", new Promise(function (resolve, reject) {
+                      wx.getSetting({
+                        success: function success(res) {
+                          if (res.authSetting['scope.userInfo']) {
+                            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                            wx.getUserInfo({
+                              success: function success(res) {
+                                if (!wx.getStorageSync(_this.storageKey)) {
+                                  _this._getAuth(res);
+                                }
+
+                                resolve(res);
+                              },
+                              fail: function fail() {
+                                _this.logout();
+
+                                reject(new Error('wx.getUserInfo failed'));
+                              }
+                            });
+                          } else {
+                            _this.logout();
+
+                            resolve(); // reject(new Error('scope.userInfo permission should be got.'));
+                          }
+                        },
+                        fail: function fail() {
+                          _this.logout();
+
+                          reject(new Error('wx.getSetting failed'));
+                        }
+                      });
+                    }));
+
+                  case 1:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+
+        function autoLogin() {
+          return _autoLogin.apply(this, arguments);
+        }
+
+        return autoLogin;
+      }()
+      /**
+       * 首次授权，获取用户信息并登陆
+       * @param {object} e 小程序授权按钮事件及数据
+       * @return {object} 用户信息
+       */
+      ;
+
+    _proto.tapToLogin =
+      /*#__PURE__*/
+      function () {
+        var _tapToLogin = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee3(e) {
+            var info;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    info = e.detail;
+                    _context3.next = 3;
+                    return this._getAuth(info);
+
+                  case 3:
+                    return _context3.abrupt("return", info);
+
+                  case 4:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+
+        function tapToLogin(_x2) {
+          return _tapToLogin.apply(this, arguments);
+        }
+
+        return tapToLogin;
+      }();
+
+    _proto._getAuth =
+      /*#__PURE__*/
+      function () {
+        var _getAuth2 = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee4(info) {
+            var result;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    _context4.next = 2;
+                    return this.login(info);
+
+                  case 2:
+                    result = _context4.sent;
+                    return _context4.abrupt("return", result);
+
+                  case 4:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
+
+        function _getAuth(_x3) {
+          return _getAuth2.apply(this, arguments);
+        }
+
+        return _getAuth;
+      }();
 
     return Auth;
   }();
@@ -3930,7 +4103,7 @@ var utils = {
 };
 
 // eslint-disable-next-line no-unused-vars
-var regeneratorRuntime = require('./polyfill');
+var regeneratorRuntime$1 = require('./polyfill');
 
 var TcbClientWS =
   /*#__PURE__*/
@@ -3943,8 +4116,10 @@ var TcbClientWS =
       this.io = io;
       this.socket = null;
       this.url = url;
-      this.options = options;
       this.roomID = null;
+      this.options = options;
+      this.authOptions = options.authOptions;
+      delete options['authOptions'];
     }
     /**
      * 鉴权对象
@@ -3984,10 +4159,10 @@ var TcbClientWS =
       function () {
         var _join = _asyncToGenerator(
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee(roomID) {
+          regeneratorRuntime$1.mark(function _callee(roomID) {
             var _this = this;
 
-            return regeneratorRuntime.wrap(function _callee$(_context) {
+            return regeneratorRuntime$1.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
@@ -4037,11 +4212,11 @@ var TcbClientWS =
       function () {
         var _leave = _asyncToGenerator(
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee2(roomIDParam) {
+          regeneratorRuntime$1.mark(function _callee2(roomIDParam) {
             var _this2 = this;
 
             var roomID;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            return regeneratorRuntime$1.wrap(function _callee2$(_context2) {
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
@@ -4089,11 +4264,11 @@ var TcbClientWS =
       function () {
         var _send = _asyncToGenerator(
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee3(_ref) {
+          regeneratorRuntime$1.mark(function _callee3(_ref) {
             var _this3 = this;
 
             var event, message;
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            return regeneratorRuntime$1.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
@@ -4131,7 +4306,7 @@ var TcbClientWS =
     _createClass(TcbClientWS, null, [{
       key: "auth",
       get: function get() {
-        return new Auth();
+        return new Auth(this.authOptions);
       }
     }]);
 

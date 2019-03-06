@@ -1,83 +1,31 @@
 import regeneratorRuntime from '../../libs/runtime'
-import TcbClientWS from '../../libs/tcb-websocket-mp-sdk/index'
+import TcbClientWS from '../../libs/websocket-mp-sdk/index'
 
 const app = getApp()
 
 Page({
   data: {
-    isLogin: true,
     userInfo: null
   },
 
   onLoad: function() {
-    this.getUserInfo()
+    this.login()
   },
 
-  // 获取用户信息
-  getUserInfo() {
-    // 查看是否授权
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: (res) => {
-              let userInfo = res.userInfo
-
-              this.setData({
-                userInfo: userInfo
-              }, () => {
-                this.checkWebSocketAuth(userInfo)
-              })
-            },
-            fail: () => {
-              this.setData({
-                isLogin: false
-              })
-              TcbClientWS.auth.logout()
-            }
-          })
-        } else {
-          this.setData({
-            isLogin: false
-          })
-          TcbClientWS.auth.logout()
-        }
-      },
-      fail: () => {
-        wx.showToast({
-          title: '登陆失败，请重试',
-          icon: 'none'
-        })
-      }
-    })
-  },
-
-  /**
-   * 检查 websocket 连接的鉴权 token 是否还有效
-   */
-  checkWebSocketAuth(userInfo) {
-    console.log(!wx.getStorageSync('tcb-token'))
-    if (!wx.getStorageSync('tcb-token')) {
-      this.getWebSocketAuth({
-        detail: {
-          userInfo
-        }
-      })
-    }
-  },
-
-  /**
-   * 获取 websocket 连接的 token
-   */
-  async getWebSocketAuth(e){
-
+  async login(e) {
     try {
-      await TcbClientWS.auth.login(e.detail)
-      this.setData({
-        isLogin: true
-      })
-    } catch(e) {
+      let info = null;
+      // 点击登陆按钮，进行首次授权并登陆
+      if (e) {
+        info = await TcbClientWS.auth.tapToLogin(e);
+      }
+      // 有过首次授权后，可自动获取用户信息
+      else {
+        info = await TcbClientWS.auth.autoLogin();
+      }
+      this.setUserInfo(info);
+    }
+    catch (e) {
       wx.showToast({
         title: '登陆失败，请重试',
         icon: 'none',
@@ -85,15 +33,20 @@ Page({
       })
     }
   },
+
+  // 登陆成功后，于本页面设置用户数据
+  setUserInfo(info) {
+    this.setData({
+      userInfo: info ? info.userInfo : null
+    })
+  },
   
   /**
    * 加入房间
    */
   join(e) {
     let room = e.detail.value.room
-
     wx.setStorageSync('userInfo', this.data.userInfo);
-
     wx.navigateTo({
       url: `/pages/room/index?room=${room}`,
     })

@@ -1,6 +1,6 @@
 {
   "name": "@cloudbase/websocket-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tcb websocket sdk for node and javascript",
   "main": "./dist/websocket-node-sdk/index.js",
   "scripts": {

@@ -12,7 +12,7 @@
 	},
 	"appid": "wxcf5102ada68a7ac9",
 	"projectname": "tcb%20websocket",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.1",
 	"condition": {
 		"search": {
 			"current": -1,

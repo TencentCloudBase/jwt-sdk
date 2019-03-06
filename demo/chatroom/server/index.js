@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
 const serve = require('koa-static');
-const TcbServerWS = require('./tcb-websocket-node-sdk');
+const TcbServerWS = require('./websocket-node-sdk');
 const config = require('./config');
 
 // 指向静态文件文件夹
@@ -185,6 +185,9 @@ tcbServerWS.open({
             }
         });
 
+    },
+    error: (e) => {
+      console.log(e);
     },
     disconnecting: (socket) => {
         console.log('disconnecting ' + socket.id);

@@ -4,11 +4,10 @@ const jwt = require('jsonwebtoken');
 
 cloud.init();
 
-const secretOrPublicKey = 'asdfadfadfa';
+const secretOrPublicKey = 'cloudbase2019';
 
 // 云函数入口函数
 exports.main = async (event = {}) => {
-    console.log(event);
     const { action, token, data } = event;
     let result;
 
@@ -64,7 +63,7 @@ function verify(token) {
 
     if (token) {
         try {
-            result = jwt.verify(token, secretOrPublicKey);
+          result = jwt.verify(token, secretOrPublicKey);
         } catch (e) {
             console.error(e);
             switch (e.name) {

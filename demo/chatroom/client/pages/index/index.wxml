@@ -1,16 +1,16 @@
 <!--index.wxml-->
 <view class="page">
-  <view class="join" wx:if="{{isLogin}}">
+  <view class="join" wx:if="{{userInfo}}">
   <image wx:if="{{userInfo}}" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
   <form bindsubmit="join">
     <input name="room" placeholder="房间名（默认：Lobby）" />
     <button form-type="submit">加入</button>
   </form>
   </view>
-  <view class="login" wx:if="{{!isLogin}}">
+  <view class="login" wx:if="{{!userInfo}}">
     <button
       open-type='getUserInfo'
-      bindgetuserinfo="getWebSocketAuth"
+      bindgetuserinfo="login"
     >
       登陆
     </button>

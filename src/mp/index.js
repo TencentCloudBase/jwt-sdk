@@ -10,15 +10,17 @@ export default class TcbClientWS {
         this.io = io;
         this.socket = null;
         this.url = url;
-        this.options = options;
         this.roomID = null;
+        this.options = options;
+        this.authOptions = options.authOptions;
+        delete options['authOptions'];
     }
 
     /**
      * 鉴权对象
      */
     static get auth() {
-        return new Auth();
+        return new Auth(this.authOptions);
     }
 
     /**

@@ -21,6 +21,13 @@
 | --- | --- | ---
 | io | object | 由 [`require('socket.io-client').`生成的](https://socket.io/docs/client-api/#IO) 出来的函数
 | socket | object | `socket.io-client` 的 [Socket](https://socket.io/docs/client-api/#Socket) 对象
+| authOptions | object | 与鉴权有关的配置项
+
+* authOptions 对象说明
+
+| 字段 | 类型 | 默认值 | 说明
+| --- | --- | --- | ---
+| storageKey | string | tcb-token | 生成的鉴权 token 的键值
 
 ## auth.login
 
@@ -45,6 +52,49 @@
 ## auth.getToken
 
 在小程序侧获取已经存储到小程序本地存储的 `token` 数据
+
+## auth.tapToLogin
+
+首次授权，获取用户信息并登陆
+
+### 参数说明
+
+| 字段 | 类型 | 必填 | 默认值 | 说明
+| --- | --- | --- | --- | ---
+| e | object | 是 | | 小程序授权按钮事件及数据
+
+### 返回值说明
+
+|类型 | 说明
+| --- | ---
+| object | 小程序用户信息
+
+### 示例
+```js
+// js
+tapToLogin(e) {
+    TcbClientWS.auth.tapToLogin(e);
+}
+
+// wxml
+<button
+    open-type='getUserInfo'
+    bindgetuserinfo="tapToLogin"
+>
+    登陆
+</button>
+
+```
+
+## auth.autoLogin
+
+首次授权后，可自动获取用户信息并登陆
+
+### 返回值说明
+
+|类型 | 说明
+| --- | ---
+| Promsise<UserInfo> | 小程序用户信息
 
 ## open
 建立 WebSocket 连接
