@@ -8,7 +8,8 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"appid": "wxcf5102ada68a7ac9",
 	"projectname": "tcb-demo-websocket-helloworld",
