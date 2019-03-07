@@ -11,7 +11,7 @@
 		"autoAudits": false
 	},
 	"appid": "wxcf5102ada68a7ac9",
-	"projectname": "tcb-demo-chatroom",
+	"projectname": "tcb-demo-websocket-helloworld",
 	"libVersion": "2.6.1",
 	"condition": {
 		"search": {
@@ -31,15 +31,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "房间",
-					"pathName": "pages/room/index",
-					"query": "room=abc",
-					"scene": null
-				}
-			]
+			"list": []
 		}
 	}
 }

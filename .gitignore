@@ -1,5 +1,6 @@
 node_modules
 *.log
-/demo/chatroom/server/config/index.js
-/demo/chatroom/server/static/config/index.js
 .DS_Store
+tcb.json
+/demo/*/server/config/index.js
+/demo/*/server/static/config/index.js

@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-dev ./index.js"
+  },
+  "author": "heyli",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "node-dev": "^3.1.3"
+  }
+}

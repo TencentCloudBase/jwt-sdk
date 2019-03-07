@@ -1,3 +1,4 @@
+const path = require('path');
 const Koa = require('koa');
 const app = new Koa();
 const serve = require('koa-static');
@@ -5,7 +6,7 @@ const TcbServerWS = require('./websocket-node-sdk');
 const config = require('./config');
 
 // 指向静态文件文件夹
-app.use(serve('./static'));
+app.use(serve(path.resolve('./static')));
 
 // 必须放在在所有app.use()之后
 const server = require('http').Server(app.callback());
@@ -216,4 +217,4 @@ tcbServerWS.open({
     }
 });
 
-server.listen(1809);
+server.listen(3000);

@@ -63,7 +63,7 @@ function verify(token) {
 
     if (token) {
         try {
-            result = jwt.verify(token, secretOrPublicKey);
+          result = jwt.verify(token, secretOrPublicKey);
         } catch (e) {
             console.error(e);
             switch (e.name) {

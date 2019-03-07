@@ -88,7 +88,7 @@ export default class TcbClientWS {
     /**
      * 发送消息
      * @param {*} param
-     * @param {String} param.mode 发送消息的模式
+     * @param {String} param.event 消息事件
      * @param {String} param.message 消息数据
      * @return {Promise<data>}
      */
@@ -101,6 +101,12 @@ export default class TcbClientWS {
         });
     }
 
+    /**
+     * 接收消息
+     * @param {*} param
+     * @param {String} param.event 消息事件
+     * @param {String} param.callback 数据接受回调
+     */
     receive({ event, callback }) {
         this.socket.on(event, (data, ack) => {
             Utils.isFunction(callback) && callback(data);

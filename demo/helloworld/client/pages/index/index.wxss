@@ -1,0 +1,44 @@
+page,
+.page {
+  height: 100%;
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+.join {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
+}
+
+.join form {
+  width: 60%;
+  height: 200rpx;
+}
+
+.join form input {
+  margin: 20rpx 0;
+}
+
+.join .userinfo-avatar {
+  width:128rpx;
+  height:128rpx;
+  margin:20rpx;
+  border-radius:50%;
+}
+
+.login {
+  position: absolute;
+  width: 60%;
+  height: 100rpx;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 40rpx;
+}
