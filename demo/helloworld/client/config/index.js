@@ -1,4 +1,4 @@
 module.exports = {
-  // url: 'ws://localhost:1809',
+  // url: 'ws://localhost:3000',
   url: 'wss://ws.docschina.org'
 }

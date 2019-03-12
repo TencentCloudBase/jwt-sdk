@@ -65,7 +65,6 @@ Page({
     this.tcbClientWS.receive({
       event: 'message',
       callback: (data) => {
-        console.log(data);
         this.setData({
           [data.type]: data.val
         }, () => {

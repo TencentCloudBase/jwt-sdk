@@ -1,0 +1,23 @@
+{
+    "common": {
+        "secretId": "",
+        "secretKey": "",
+        "server": {
+            "host": "",
+            "password": ""
+        }
+    },
+    "deploys": [
+        {
+            "name": "auth",
+            "path": "./cloud/functions/auth",
+            "type": "function",
+            "envId": "tcb-advanced-a656fc"
+        },
+        {
+            "name": "chatroom",
+            "path": "./server",
+            "type": "node"
+        }
+    ]
+}

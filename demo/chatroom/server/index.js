@@ -6,7 +6,7 @@ const TcbServerWS = require('./websocket-node-sdk');
 const config = require('./config');
 
 // 指向静态文件文件夹
-app.use(serve(path.resolve('./static')));
+app.use(serve(path.resolve(__dirname, './static')));
 
 // 必须放在在所有app.use()之后
 const server = require('http').Server(app.callback());

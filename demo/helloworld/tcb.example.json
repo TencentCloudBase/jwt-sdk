@@ -1,0 +1,17 @@
+{
+    "common": {
+        "secretId": "",
+        "secretKey": "",
+        "server": {
+            "host": "",
+            "password": ""
+        }
+    },
+    "deploys": [
+        {
+            "name": "websocket",
+            "entry": "./server/index.js",
+            "type": "websocket"
+        }
+    ]
+}
