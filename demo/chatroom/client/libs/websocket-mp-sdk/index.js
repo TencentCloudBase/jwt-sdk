@@ -1,82 +1,82 @@
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try {
-      var info = gen[key](arg);
-      var value = info.value;
-    } catch (error) {
-      reject(error);
-      return;
-    }
-
-    if (info.done) {
-      resolve(value);
-    } else {
-      Promise.resolve(value).then(_next, _throw);
-    }
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
   }
 
-  function _asyncToGenerator(fn) {
-    return function () {
-      var self = this,
-          args = arguments;
-      return new Promise(function (resolve, reject) {
-        var gen = fn.apply(self, args);
-
-        function _next(value) {
-          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-        }
-
-        function _throw(err) {
-          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-        }
-
-        _next(undefined);
-      });
-    };
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
   }
+}
 
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
 
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
-
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
       }
 
-      return target;
-    };
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
 
-    return _extends.apply(this, arguments);
+      _next(undefined);
+    });
+  };
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
   }
+}
 
-  function unwrapExports (x) {
-      return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
-  }
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
 
-  function createCommonjsModule(fn, module) {
-      return module = { exports: {} }, fn(module, module.exports), module.exports;
-  }
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
 
-  var weapp_socket_io = createCommonjsModule(function (module, exports) {
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function unwrapExports(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+}
+
+function createCommonjsModule(fn, module) {
+  return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var weapp_socket_io = createCommonjsModule(function (module, exports) {
   !function (t, e) {
     module.exports = e();
   }(window, function () {
@@ -127,7 +127,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, r.p = "", r(r.s = 24);
     }([function (t, e) {
       t.exports = function () {
-        return function () {};
+        return function () { };
       };
     }, function (t, e) {
       var r;
@@ -169,7 +169,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, n.prototype.off = n.prototype.removeListener = n.prototype.removeAllListeners = n.prototype.removeEventListener = function (t, e) {
         if (this._callbacks = this._callbacks || {}, 0 == arguments.length) return this._callbacks = {}, this;
         var r,
-            n = this._callbacks["$" + t];
+          n = this._callbacks["$" + t];
         if (!n) return this;
         if (1 == arguments.length) return delete this._callbacks["$" + t], this;
 
@@ -182,7 +182,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, n.prototype.emit = function (t) {
         this._callbacks = this._callbacks || {};
         var e = [].slice.call(arguments, 1),
-            r = this._callbacks["$" + t];
+          r = this._callbacks["$" + t];
         if (r) for (var n = 0, o = (r = r.slice(0)).length; n < o; ++n) r[n].apply(this, e);
         return this;
       }, n.prototype.listeners = function (t) {
@@ -192,12 +192,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       };
     }, function (t, e, r) {
       var n = r(0)("socket.io-parser"),
-          o = r(3),
-          i = r(20),
-          s = r(2),
-          a = r(9);
+        o = r(3),
+        i = r(20),
+        s = r(2),
+        a = r(9);
 
-      function u() {}
+      function u() { }
 
       e.protocol = 4, e.types = ["CONNECT", "DISCONNECT", "EVENT", "ACK", "ERROR", "BINARY_EVENT", "BINARY_ACK"], e.CONNECT = 0, e.DISCONNECT = 1, e.EVENT = 2, e.ACK = 3, e.ERROR = 4, e.BINARY_EVENT = 5, e.BINARY_ACK = 6, e.Encoder = u, e.Decoder = h;
       var c = e.ERROR + '"encode error"';
@@ -240,8 +240,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         (n("encoding packet %j", t), e.BINARY_EVENT === t.type || e.BINARY_ACK === t.type) ? function (t, e) {
           i.removeBlobs(t, function (t) {
             var r = i.deconstructPacket(t),
-                n = f(r.packet),
-                o = r.buffers;
+              n = f(r.packet),
+              o = r.buffers;
             o.unshift(n), e(o);
           });
         }(t, r) : r([f(t)]);
@@ -249,9 +249,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         var r;
         if ("string" == typeof t) r = function (t) {
           var r = 0,
-              o = {
-            type: Number(t.charAt(0))
-          };
+            o = {
+              type: Number(t.charAt(0))
+            };
           if (null == e.types[o.type]) return l("unknown packet type " + o.type);
 
           if (e.BINARY_EVENT === o.type || e.BINARY_ACK === o.type) {
@@ -291,14 +291,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
                 return !1;
               }
             }(t.substr(r)),
-                f = !1 !== c && (o.type === e.ERROR || s(c));
+              f = !1 !== c && (o.type === e.ERROR || s(c));
 
             if (!f) return l("invalid payload");
             o.data = c;
           }
 
           return n("decoded %s as %j", t, o), o;
-        }(t), e.BINARY_EVENT === r.type || e.BINARY_ACK === r.type ? (this.reconstructor = new p(r), 0 === this.reconstructor.reconPack.attachments && this.emit("decoded", r)) : this.emit("decoded", r);else {
+        }(t), e.BINARY_EVENT === r.type || e.BINARY_ACK === r.type ? (this.reconstructor = new p(r), 0 === this.reconstructor.reconPack.attachments && this.emit("decoded", r)) : this.emit("decoded", r); else {
           if (!a(t) && !t.base64) throw new Error("Unknown type: " + t);
           if (!this.reconstructor) throw new Error("got binary data when not reconstructing a packet");
           (r = this.reconstructor.takeBinaryData(t)) && (this.reconstructor = null, this.emit("decoded", r));
@@ -335,13 +335,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       };
     }, function (t, e, r) {
       var n = r(4),
-          o = r(3),
-          i = r(18),
-          s = r(6),
-          a = r(5),
-          u = r(0)("socket.io-client:socket"),
-          c = r(17),
-          f = r(16);
+        o = r(3),
+        i = r(18),
+        s = r(6),
+        a = r(5),
+        u = r(0)("socket.io-client:socket"),
+        c = r(17),
+        f = r(16);
       t.exports = l;
       var h = {
         connect: 1,
@@ -358,7 +358,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         ping: 1,
         pong: 1
       },
-          p = o.prototype.emit;
+        p = o.prototype.emit;
 
       function l(t, e, r) {
         this.io = t, this.nsp = e, this.json = this, this.ids = 0, this.acks = {}, this.receiveBuffer = [], this.sendBuffer = [], this.connected = !1, this.disconnected = !0, this.flags = {}, r && r.query && (this.query = r.query), this.io.autoConnect && this.open();
@@ -377,11 +377,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, l.prototype.emit = function (t) {
         if (h.hasOwnProperty(t)) return p.apply(this, arguments), this;
         var e = i(arguments),
-            r = {
-          type: (void 0 !== this.flags.binary ? this.flags.binary : f(e)) ? n.BINARY_EVENT : n.EVENT,
-          data: e,
-          options: {}
-        };
+          r = {
+            type: (void 0 !== this.flags.binary ? this.flags.binary : f(e)) ? n.BINARY_EVENT : n.EVENT,
+            data: e,
+            options: {}
+          };
         return r.options.compress = !this.flags || !1 !== this.flags.compress, "function" == typeof e[e.length - 1] && (u("emitting packet with ack id %d", this.ids), this.acks[this.ids] = e.pop(), r.id = this.ids++), this.connected ? this.packet(r) : this.sendBuffer.push(r), this.flags = {}, this;
       }, l.prototype.packet = function (t) {
         t.nsp = this.nsp, this.io.packet(t);
@@ -399,7 +399,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         u("close (%s)", t), this.connected = !1, this.disconnected = !0, delete this.id, this.emit("disconnect", t);
       }, l.prototype.onpacket = function (t) {
         var e = t.nsp === this.nsp,
-            r = t.type === n.ERROR && "/" === t.nsp;
+          r = t.type === n.ERROR && "/" === t.nsp;
         if (e || r) switch (t.type) {
           case n.CONNECT:
             this.onconnect();
@@ -427,7 +427,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         u("emitting event %j", e), null != t.id && (u("attaching ack callback to event"), e.push(this.ack(t.id))), this.connected ? p.apply(this, e) : this.receiveBuffer.push(e);
       }, l.prototype.ack = function (t) {
         var e = this,
-            r = !1;
+          r = !1;
         return function () {
           if (!r) {
             r = !0;
@@ -473,15 +473,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       };
     }, function (t, e, r) {
       var n = r(19),
-          o = r(7),
-          i = r(3),
-          s = r(4),
-          a = r(6),
-          u = r(5),
-          c = r(0)("socket.io-client:manager"),
-          f = r(11),
-          h = r(10),
-          p = Object.prototype.hasOwnProperty;
+        o = r(7),
+        i = r(3),
+        s = r(4),
+        a = r(6),
+        u = r(5),
+        c = r(0)("socket.io-client:manager"),
+        f = r(11),
+        h = r(10),
+        p = Object.prototype.hasOwnProperty;
 
       function l(t, e) {
         if (!(this instanceof l)) return new l(t, e);
@@ -518,17 +518,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         if (c("readyState %s", this.readyState), ~this.readyState.indexOf("open")) return this;
         c("opening %s", this.uri), this.engine = n(this.uri, this.opts);
         var r = this.engine,
-            o = this;
+          o = this;
         this.readyState = "opening", this.skipReconnect = !1;
         var i = a(r, "open", function () {
           o.onopen(), t && t();
         }),
-            s = a(r, "error", function (e) {
-          if (c("connect_error"), o.cleanup(), o.readyState = "closed", o.emitAll("connect_error", e), t) {
-            var r = new Error("Connection error");
-            r.data = e, t(r);
-          } else o.maybeReconnectOnOpen();
-        });
+          s = a(r, "error", function (e) {
+            if (c("connect_error"), o.cleanup(), o.readyState = "closed", o.emitAll("connect_error", e), t) {
+              var r = new Error("Connection error");
+              r.data = e, t(r);
+            } else o.maybeReconnectOnOpen();
+          });
 
         if (!1 !== this._timeout) {
           var u = this._timeout;
@@ -605,7 +605,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, l.prototype.reconnect = function () {
         if (this.reconnecting || this.skipReconnect) return this;
         var t = this;
-        if (this.backoff.attempts >= this._reconnectionAttempts) c("reconnect failed"), this.backoff.reset(), this.emitAll("reconnect_failed"), this.reconnecting = !1;else {
+        if (this.backoff.attempts >= this._reconnectionAttempts) c("reconnect failed"), this.backoff.reset(), this.emitAll("reconnect_failed"), this.reconnecting = !1; else {
           var e = this.backoff.duration();
           c("will wait %dms before reconnect attempt", e), this.reconnecting = !0;
           var r = setTimeout(function () {
@@ -630,10 +630,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         };
 
         var r = "function" == typeof e.Buffer && "function" == typeof e.Buffer.isBuffer,
-            n = "function" == typeof e.ArrayBuffer,
-            o = n && "function" == typeof e.ArrayBuffer.isView ? e.ArrayBuffer.isView : function (t) {
-          return t.buffer instanceof e.ArrayBuffer;
-        };
+          n = "function" == typeof e.ArrayBuffer,
+          o = n && "function" == typeof e.ArrayBuffer.isView ? e.ArrayBuffer.isView : function (t) {
+            return t.buffer instanceof e.ArrayBuffer;
+          };
       }).call(this, r(1));
     }, function (t, e) {
       function r(t) {
@@ -645,7 +645,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
         if (this.jitter) {
           var e = Math.random(),
-              r = Math.floor(e * this.jitter * t);
+            r = Math.floor(e * this.jitter * t);
           t = 0 == (1 & Math.floor(10 * e)) ? t - r : t + r;
         }
 
@@ -678,37 +678,37 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     }, function (t, e) {
       e.read = function (t, e, r, n, o) {
         var i,
-            s,
-            a = 8 * o - n - 1,
-            u = (1 << a) - 1,
-            c = u >> 1,
-            f = -7,
-            h = r ? o - 1 : 0,
-            p = r ? -1 : 1,
-            l = t[e + h];
+          s,
+          a = 8 * o - n - 1,
+          u = (1 << a) - 1,
+          c = u >> 1,
+          f = -7,
+          h = r ? o - 1 : 0,
+          p = r ? -1 : 1,
+          l = t[e + h];
 
         for (h += p, i = l & (1 << -f) - 1, l >>= -f, f += a; f > 0; i = 256 * i + t[e + h], h += p, f -= 8);
 
         for (s = i & (1 << -f) - 1, i >>= -f, f += n; f > 0; s = 256 * s + t[e + h], h += p, f -= 8);
 
-        if (0 === i) i = 1 - c;else {
+        if (0 === i) i = 1 - c; else {
           if (i === u) return s ? NaN : 1 / 0 * (l ? -1 : 1);
           s += Math.pow(2, n), i -= c;
         }
         return (l ? -1 : 1) * s * Math.pow(2, i - n);
       }, e.write = function (t, e, r, n, o, i) {
         var s,
-            a,
-            u,
-            c = 8 * i - o - 1,
-            f = (1 << c) - 1,
-            h = f >> 1,
-            p = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
-            l = n ? 0 : i - 1,
-            d = n ? 1 : -1,
-            y = e < 0 || 0 === e && 1 / e < 0 ? 1 : 0;
+          a,
+          u,
+          c = 8 * i - o - 1,
+          f = (1 << c) - 1,
+          h = f >> 1,
+          p = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
+          l = n ? 0 : i - 1,
+          d = n ? 1 : -1,
+          y = e < 0 || 0 === e && 1 / e < 0 ? 1 : 0;
 
-        for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (a = isNaN(e) ? 1 : 0, s = f) : (s = Math.floor(Math.log(e) / Math.LN2), e * (u = Math.pow(2, -s)) < 1 && (s--, u *= 2), (e += s + h >= 1 ? p / u : p * Math.pow(2, 1 - h)) * u >= 2 && (s++, u /= 2), s + h >= f ? (a = 0, s = f) : s + h >= 1 ? (a = (e * u - 1) * Math.pow(2, o), s += h) : (a = e * Math.pow(2, h - 1) * Math.pow(2, o), s = 0)); o >= 8; t[r + l] = 255 & a, l += d, a /= 256, o -= 8);
+        for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (a = isNaN(e) ? 1 : 0, s = f) : (s = Math.floor(Math.log(e) / Math.LN2), e * (u = Math.pow(2, -s)) < 1 && (s-- , u *= 2), (e += s + h >= 1 ? p / u : p * Math.pow(2, 1 - h)) * u >= 2 && (s++ , u /= 2), s + h >= f ? (a = 0, s = f) : s + h >= 1 ? (a = (e * u - 1) * Math.pow(2, o), s += h) : (a = e * Math.pow(2, h - 1) * Math.pow(2, o), s = 0)); o >= 8; t[r + l] = 255 & a, l += d, a /= 256, o -= 8);
 
         for (s = s << o | a, c += o; c > 0; t[r + l] = 255 & s, l += d, s /= 256, c -= 8);
 
@@ -718,8 +718,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
       e.byteLength = function (t) {
         var e = c(t),
-            r = e[0],
-            n = e[1];
+          r = e[0],
+          n = e[1];
         return 3 * (r + n) / 4 - n;
       }, e.toByteArray = function (t) {
         for (var e, r = c(t), n = r[0], s = r[1], a = new i(function (t, e, r) {
@@ -762,8 +762,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
          * @license  MIT
          */
         var n = r(14),
-            o = r(13),
-            i = r(12);
+          o = r(13),
+          i = r(12);
 
         function s() {
           return u.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
@@ -797,7 +797,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             "string" == typeof r && "" !== r || (r = "utf8");
             if (!u.isEncoding(r)) throw new TypeError('"encoding" must be a valid string encoding');
             var n = 0 | d(e, r),
-                o = (t = a(t, n)).write(e, r);
+              o = (t = a(t, n)).write(e, r);
             o !== n && (t = t.slice(0, o));
             return t;
           }(t, e, r) : function (t, e) {
@@ -847,7 +847,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           var r = t.length;
           if (0 === r) return 0;
 
-          for (var n = !1;;) switch (e) {
+          for (var n = !1; ;) switch (e) {
             case "ascii":
             case "latin1":
             case "binary":
@@ -899,9 +899,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
         function v(t, e, r, n, o) {
           var i,
-              s = 1,
-              a = t.length,
-              u = e.length;
+            s = 1,
+            a = t.length,
+            u = e.length;
 
           if (void 0 !== n && ("ucs2" === (n = String(n).toLowerCase()) || "ucs-2" === n || "utf16le" === n || "utf-16le" === n)) {
             if (t.length < 2 || e.length < 2) return -1;
@@ -984,12 +984,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
           for (var n = [], o = e; o < r;) {
             var i,
-                s,
-                a,
-                u,
-                c = t[o],
-                f = null,
-                h = c > 239 ? 4 : c > 223 ? 3 : c > 191 ? 2 : 1;
+              s,
+              a,
+              u,
+              c = t[o],
+              f = null,
+              h = c > 239 ? 4 : c > 223 ? 3 : c > 191 ? 2 : 1;
             if (o + h <= r) switch (h) {
               case 1:
                 c < 128 && (f = c);
@@ -1013,7 +1013,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             var e = t.length;
             if (e <= R) return String.fromCharCode.apply(String, t);
             var r = "",
-                n = 0;
+              n = 0;
 
             for (; n < e;) r += String.fromCharCode.apply(String, t.slice(n, n += R));
 
@@ -1087,7 +1087,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           var r;
           if (void 0 === e) for (e = 0, r = 0; r < t.length; ++r) e += t[r].length;
           var n = u.allocUnsafe(e),
-              o = 0;
+            o = 0;
 
           for (r = 0; r < t.length; ++r) {
             var s = t[r];
@@ -1125,7 +1125,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             if ((void 0 === r || r > this.length) && (r = this.length), r <= 0) return "";
             if ((r >>>= 0) <= (e >>>= 0)) return "";
 
-            for (t || (t = "utf8");;) switch (t) {
+            for (t || (t = "utf8"); ;) switch (t) {
               case "hex":
                 return T(this, e, r);
 
@@ -1159,7 +1159,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           return this === t || 0 === u.compare(this, t);
         }, u.prototype.inspect = function () {
           var t = "",
-              r = e.INSPECT_MAX_BYTES;
+            r = e.INSPECT_MAX_BYTES;
           return this.length > 0 && (t = this.toString("hex", 0, r).match(/.{2}/g).join(" "), this.length > r && (t += " ... ")), "<Buffer " + t + ">";
         }, u.prototype.compare = function (t, e, r, n, o) {
           if (!u.isBuffer(t)) throw new TypeError("Argument must be a Buffer");
@@ -1182,7 +1182,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, u.prototype.lastIndexOf = function (t, e, r) {
           return g(this, t, e, r, !1);
         }, u.prototype.write = function (t, e, r, n) {
-          if (void 0 === e) n = "utf8", r = this.length, e = 0;else if (void 0 === r && "string" == typeof e) n = e, r = this.length, e = 0;else {
+          if (void 0 === e) n = "utf8", r = this.length, e = 0; else if (void 0 === r && "string" == typeof e) n = e, r = this.length, e = 0; else {
             if (!isFinite(e)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
             e |= 0, isFinite(r) ? (r |= 0, void 0 === n && (n = "utf8")) : (n = r, r = void 0);
           }
@@ -1190,7 +1190,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           if ((void 0 === r || r > o) && (r = o), t.length > 0 && (r < 0 || e < 0) || e > this.length) throw new RangeError("Attempt to write outside buffer bounds");
           n || (n = "utf8");
 
-          for (var i = !1;;) switch (n) {
+          for (var i = !1; ;) switch (n) {
             case "hex":
               return b(this, t, e, r);
 
@@ -1297,8 +1297,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
         u.prototype.slice = function (t, e) {
           var r,
-              n = this.length;
-          if (t = ~~t, e = void 0 === e ? n : ~~e, t < 0 ? (t += n) < 0 && (t = 0) : t > n && (t = n), e < 0 ? (e += n) < 0 && (e = 0) : e > n && (e = n), e < t && (e = t), u.TYPED_ARRAY_SUPPORT) (r = this.subarray(t, e)).__proto__ = u.prototype;else {
+            n = this.length;
+          if (t = ~~t, e = void 0 === e ? n : ~~e, t < 0 ? (t += n) < 0 && (t = 0) : t > n && (t = n), e < 0 ? (e += n) < 0 && (e = 0) : e > n && (e = n), e < t && (e = t), u.TYPED_ARRAY_SUPPORT) (r = this.subarray(t, e)).__proto__ = u.prototype; else {
             var o = e - t;
             r = new u(o, void 0);
 
@@ -1364,7 +1364,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, u.prototype.writeUIntLE = function (t, e, r, n) {
           (t = +t, e |= 0, r |= 0, n) || C(this, t, e, r, Math.pow(2, 8 * r) - 1, 0);
           var o = 1,
-              i = 0;
+            i = 0;
 
           for (this[e] = 255 & t; ++i < r && (o *= 256);) this[e + i] = t / o & 255;
 
@@ -1372,7 +1372,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, u.prototype.writeUIntBE = function (t, e, r, n) {
           (t = +t, e |= 0, r |= 0, n) || C(this, t, e, r, Math.pow(2, 8 * r) - 1, 0);
           var o = r - 1,
-              i = 1;
+            i = 1;
 
           for (this[e + o] = 255 & t; --o >= 0 && (i *= 256);) this[e + o] = t / i & 255;
 
@@ -1394,8 +1394,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }
 
           var i = 0,
-              s = 1,
-              a = 0;
+            s = 1,
+            a = 0;
 
           for (this[e] = 255 & t; ++i < r && (s *= 256);) t < 0 && 0 === a && 0 !== this[e + i - 1] && (a = 1), this[e + i] = (t / s >> 0) - a & 255;
 
@@ -1407,8 +1407,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }
 
           var i = r - 1,
-              s = 1,
-              a = 0;
+            s = 1,
+            a = 0;
 
           for (this[e + i] = 255 & t; --i >= 0 && (s *= 256);) t < 0 && 0 === a && 0 !== this[e + i + 1] && (a = 1), this[e + i] = (t / s >> 0) - a & 255;
 
@@ -1439,8 +1439,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           if (n < 0) throw new RangeError("sourceEnd out of bounds");
           n > this.length && (n = this.length), t.length - e < n - r && (n = t.length - e + r);
           var o,
-              i = n - r;
-          if (this === t && r < e && e < n) for (o = i - 1; o >= 0; --o) t[o + e] = this[o + r];else if (i < 1e3 || !u.TYPED_ARRAY_SUPPORT) for (o = 0; o < i; ++o) t[o + e] = this[o + r];else Uint8Array.prototype.set.call(t, this.subarray(r, r + i), e);
+            i = n - r;
+          if (this === t && r < e && e < n) for (o = i - 1; o >= 0; --o) t[o + e] = this[o + r]; else if (i < 1e3 || !u.TYPED_ARRAY_SUPPORT) for (o = 0; o < i; ++o) t[o + e] = this[o + r]; else Uint8Array.prototype.set.call(t, this.subarray(r, r + i), e);
           return i;
         }, u.prototype.fill = function (t, e, r, n) {
           if ("string" == typeof t) {
@@ -1456,9 +1456,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           if (e < 0 || this.length < e || this.length < r) throw new RangeError("Out of range index");
           if (r <= e) return this;
           var i;
-          if (e >>>= 0, r = void 0 === r ? this.length : r >>> 0, t || (t = 0), "number" == typeof t) for (i = e; i < r; ++i) this[i] = t;else {
+          if (e >>>= 0, r = void 0 === r ? this.length : r >>> 0, t || (t = 0), "number" == typeof t) for (i = e; i < r; ++i) this[i] = t; else {
             var s = u.isBuffer(t) ? t : j(new u(t, n).toString()),
-                a = s.length;
+              a = s.length;
 
             for (i = 0; i < r - e; ++i) this[i + e] = s[i % a];
           }
@@ -1539,9 +1539,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     }, function (t, e, r) {
       (function (e) {
         var n = r(2),
-            o = Object.prototype.toString,
-            i = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === o.call(Blob),
-            s = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === o.call(File);
+          o = Object.prototype.toString,
+          i = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === o.call(Blob),
+          s = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === o.call(File);
 
         t.exports = function t(r) {
           if (!r || "object" != typeof r) return !1;
@@ -1644,15 +1644,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e, r) {
         (function (t) {
           var n,
-              o = r(26),
-              i = r(25),
-              s = r(19),
-              a = r(18),
-              u = r(17);
+            o = r(26),
+            i = r(25),
+            s = r(19),
+            a = r(18),
+            u = r(17);
           t && t.ArrayBuffer && (n = r(15));
           var c = "undefined" != typeof navigator && /Android/i.test(navigator.userAgent),
-              f = "undefined" != typeof navigator && /PhantomJS/i.test(navigator.userAgent),
-              h = c || f;
+            f = "undefined" != typeof navigator && /PhantomJS/i.test(navigator.userAgent),
+            h = c || f;
           e.protocol = 3;
           var p = e.packets = {
             open: 0,
@@ -1663,12 +1663,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             upgrade: 5,
             noop: 6
           },
-              l = o(p),
-              d = {
-            type: "error",
-            data: "parser error"
-          },
-              y = r(14);
+            l = o(p),
+            d = {
+              type: "error",
+              data: "parser error"
+            },
+            y = r(14);
 
           function g(t, e, r) {
             for (var n = new Array(t.length), o = a(t.length, r), i = function (t, r, o) {
@@ -1684,8 +1684,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             if (t.ArrayBuffer && s instanceof ArrayBuffer) return function (t, r, n) {
               if (!r) return e.encodeBase64Packet(t, n);
               var o = t.data,
-                  i = new Uint8Array(o),
-                  s = new Uint8Array(1 + o.byteLength);
+                i = new Uint8Array(o),
+                s = new Uint8Array(1 + o.byteLength);
               s[0] = p[t.type];
 
               for (var a = 0; a < i.length; a++) s[a + 1] = i[a];
@@ -1716,7 +1716,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             }) : String(r.data)), i("" + a);
           }, e.encodeBase64Packet = function (r, n) {
             var o,
-                i = "b" + e.packets[r.type];
+              i = "b" + e.packets[r.type];
 
             if (y && r.data instanceof t.Blob) {
               var s = new FileReader();
@@ -1756,8 +1756,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
                 type: l[o],
                 data: t.substring(1)
               } : {
-                type: l[o]
-              } : d;
+                  type: l[o]
+                } : d;
             }
 
             o = new Uint8Array(t)[0];
@@ -1825,11 +1825,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
                 var r;
                 return t + (r = "string" == typeof e ? e.length : e.byteLength).toString().length + r + 2;
               }, 0),
-                  o = new Uint8Array(n),
-                  i = 0;
+                o = new Uint8Array(n),
+                i = 0;
               return e.forEach(function (t) {
                 var e = "string" == typeof t,
-                    r = t;
+                  r = t;
 
                 if (e) {
                   for (var n = new Uint8Array(t.length), s = 0; s < t.length; s++) n[s] = t.charCodeAt(s);
@@ -1857,7 +1857,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
                 }
 
                 var i = (t instanceof ArrayBuffer ? t.byteLength : t.size).toString(),
-                    s = new Uint8Array(i.length + 1);
+                  s = new Uint8Array(i.length + 1);
 
                 for (o = 0; o < i.length; o++) s[o] = parseInt(i[o]);
 
@@ -1898,7 +1898,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }).call(this, r(0));
       }, function (t, e) {
         t.exports = function () {
-          return function () {};
+          return function () { };
         };
       }, function (t, e) {
         e.encode = function (t) {
@@ -1935,7 +1935,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, n.prototype.off = n.prototype.removeListener = n.prototype.removeAllListeners = n.prototype.removeEventListener = function (t, e) {
           if (this._callbacks = this._callbacks || {}, 0 == arguments.length) return this._callbacks = {}, this;
           var r,
-              n = this._callbacks["$" + t];
+            n = this._callbacks["$" + t];
           if (!n) return this;
           if (1 == arguments.length) return delete this._callbacks["$" + t], this;
 
@@ -1948,7 +1948,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, n.prototype.emit = function (t) {
           this._callbacks = this._callbacks || {};
           var e = [].slice.call(arguments, 1),
-              r = this._callbacks["$" + t];
+            r = this._callbacks["$" + t];
           if (r) for (var n = 0, o = (r = r.slice(0)).length; n < o; ++n) r[n].apply(this, e);
           return this;
         }, n.prototype.listeners = function (t) {
@@ -1958,7 +1958,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         };
       }, function (t, e, r) {
         var n = r(1),
-            o = r(4);
+          o = r(4);
 
         function i(t) {
           this.path = t.path, this.hostname = t.hostname, this.port = t.port, this.secure = t.secure, this.query = t.query, this.timestampParam = t.timestampParam, this.timestampRequests = t.timestampRequests, this.readyState = "", this.agent = t.agent || !1, this.socket = t.socket, this.enablesXDR = t.enablesXDR, this.pfx = t.pfx, this.key = t.key, this.passphrase = t.passphrase, this.cert = t.cert, this.ca = t.ca, this.ciphers = t.ciphers, this.rejectUnauthorized = t.rejectUnauthorized, this.forceNode = t.forceNode, this.extraHeaders = t.extraHeaders, this.localAddress = t.localAddress;
@@ -1989,12 +1989,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         e.websocket = n;
       }, function (t, e) {
         var r = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,
-            n = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
+          n = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
 
         t.exports = function (t) {
           var e = t,
-              o = t.indexOf("["),
-              i = t.indexOf("]");
+            o = t.indexOf("["),
+            i = t.indexOf("]");
           -1 != o && -1 != i && (t = t.substring(0, o) + t.substring(o, i).replace(/:/g, ";") + t.substring(i, t.length));
 
           for (var s = r.exec(t || ""), a = {}, u = 14; u--;) a[n[u]] = s[u] || "";
@@ -2141,7 +2141,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           var r, i, s, a;
           if (!n(e)) throw TypeError("listener must be a function");
           if (!this._events || !this._events[t]) return this;
-          if (s = (r = this._events[t]).length, i = -1, r === e || n(r.listener) && r.listener === e) delete this._events[t], this._events.removeListener && this.emit("removeListener", t, e);else if (o(r)) {
+          if (s = (r = this._events[t]).length, i = -1, r === e || n(r.listener) && r.listener === e) delete this._events[t], this._events.removeListener && this.emit("removeListener", t, e); else if (o(r)) {
             for (a = s; a-- > 0;) if (r[a] === e || r[a].listener && r[a].listener === e) {
               i = a;
               break;
@@ -2162,7 +2162,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             return this.removeAllListeners("removeListener"), this._events = {}, this;
           }
 
-          if (n(r = this._events[t])) this.removeListener(t, r);else if (r) for (; r.length;) this.removeListener(t, r[r.length - 1]);
+          if (n(r = this._events[t])) this.removeListener(t, r); else if (r) for (; r.length;) this.removeListener(t, r[r.length - 1]);
           return delete this._events[t], this;
         }, r.prototype.listeners = function (t) {
           return this._events && this._events[t] ? n(this._events[t]) ? [this._events[t]] : this._events[t].slice() : [];
@@ -2179,9 +2179,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         };
       }, function (t, e, r) {
         const n = r(10),
-              o = r(9),
-              i = r(2)("weapp-socket:"),
-              s = ["CONNECTING", "OPEN", "CLOSING", "CLOSED"];
+          o = r(9),
+          i = r(2)("weapp-socket:"),
+          s = ["CONNECTING", "OPEN", "CLOSING", "CLOSED"];
 
         class a extends n {
           constructor(t, e, r) {
@@ -2273,11 +2273,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e, r) {
 
         var n,
-            o = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""),
-            i = 64,
-            s = {},
-            a = 0,
-            u = 0;
+          o = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""),
+          i = 64,
+          s = {},
+          a = 0,
+          u = 0;
 
         function c(t) {
           var e = "";
@@ -2305,28 +2305,28 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }, t.exports = f;
       }, function (t, e) {
         t.exports = function (t, e) {
-          var r = function () {};
+          var r = function () { };
 
           r.prototype = e.prototype, t.prototype = new r(), t.prototype.constructor = t;
         };
       }, function (t, e, r) {
         (function (e) {
           var r = e.BlobBuilder || e.WebKitBlobBuilder || e.MSBlobBuilder || e.MozBlobBuilder,
-              n = function () {
-            try {
-              return 2 === new Blob(["hi"]).size;
-            } catch (t) {
-              return !1;
-            }
-          }(),
-              o = n && function () {
-            try {
-              return 2 === new Blob([new Uint8Array([1, 2])]).size;
-            } catch (t) {
-              return !1;
-            }
-          }(),
-              i = r && r.prototype.append && r.prototype.getBlob;
+            n = function () {
+              try {
+                return 2 === new Blob(["hi"]).size;
+              } catch (t) {
+                return !1;
+              }
+            }(),
+            o = n && function () {
+              try {
+                return 2 === new Blob([new Uint8Array([1, 2])]).size;
+              } catch (t) {
+                return !1;
+              }
+            }(),
+            i = r && r.prototype.append && r.prototype.getBlob;
 
           function s(t) {
             for (var e = 0; e < t.length; e++) {
@@ -2364,25 +2364,25 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
           e.encode = function (e) {
             var r,
-                n = new Uint8Array(e),
-                o = n.length,
-                i = "";
+              n = new Uint8Array(e),
+              o = n.length,
+              i = "";
 
             for (r = 0; r < o; r += 3) i += t[n[r] >> 2], i += t[(3 & n[r]) << 4 | n[r + 1] >> 4], i += t[(15 & n[r + 1]) << 2 | n[r + 2] >> 6], i += t[63 & n[r + 2]];
 
             return o % 3 == 2 ? i = i.substring(0, i.length - 1) + "=" : o % 3 == 1 && (i = i.substring(0, i.length - 2) + "=="), i;
           }, e.decode = function (t) {
             var e,
-                n,
-                o,
-                i,
-                s,
-                a = .75 * t.length,
-                u = t.length,
-                c = 0;
-            "=" === t[t.length - 1] && (a--, "=" === t[t.length - 2] && a--);
+              n,
+              o,
+              i,
+              s,
+              a = .75 * t.length,
+              u = t.length,
+              c = 0;
+            "=" === t[t.length - 1] && (a-- , "=" === t[t.length - 2] && a--);
             var f = new ArrayBuffer(a),
-                h = new Uint8Array(f);
+              h = new Uint8Array(f);
 
             for (e = 0; e < u; e += 4) n = r[t.charCodeAt(e)], o = r[t.charCodeAt(e + 1)], i = r[t.charCodeAt(e + 2)], s = r[t.charCodeAt(e + 3)], h[c++] = n << 2 | o >> 4, h[c++] = (15 & o) << 4 | i >> 2, h[c++] = (3 & i) << 6 | 63 & s;
 
@@ -2391,7 +2391,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         }();
       }, function (t, e) {
         t.exports = function (t) {
-          return t.webpackPolyfill || (t.deprecate = function () {}, t.paths = [], t.children || (t.children = []), Object.defineProperty(t, "loaded", {
+          return t.webpackPolyfill || (t.deprecate = function () { }, t.paths = [], t.children || (t.children = []), Object.defineProperty(t, "loaded", {
             enumerable: !0,
             get: function () {
               return t.l;
@@ -2412,9 +2412,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             var s = ("object" == typeof t && t && t.exports, "object" == typeof n && n);
             s.global !== s && s.window;
             var a,
-                u,
-                c,
-                f = String.fromCharCode;
+              u,
+              c,
+              f = String.fromCharCode;
 
             function h(t) {
               for (var e, r, n = [], o = 0, i = t.length; o < i;) (e = t.charCodeAt(o++)) >= 55296 && e <= 56319 && o < i ? 56320 == (64512 & (r = t.charCodeAt(o++))) ? n.push(((1023 & e) << 10) + (1023 & r) + 65536) : (n.push(e), o--) : n.push(e);
@@ -2444,7 +2444,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             function y() {
               if (c >= u) throw Error("Invalid byte index");
               var t = 255 & a[c];
-              if (c++, 128 == (192 & t)) return 63 & t;
+              if (c++ , 128 == (192 & t)) return 63 & t;
               throw Error("Invalid continuation byte");
             }
 
@@ -2452,7 +2452,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
               var e, r;
               if (c > u) throw Error("Invalid byte index");
               if (c == u) return !1;
-              if (e = 255 & a[c], c++, 0 == (128 & e)) return e;
+              if (e = 255 & a[c], c++ , 0 == (128 & e)) return e;
 
               if (192 == (224 & e)) {
                 if ((r = (31 & e) << 6 | y()) >= 128) return r;
@@ -2494,7 +2494,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }();
         }).call(this, r(16)(t), r(0));
       }, function (t, e) {
-        function r() {}
+        function r() { }
 
         t.exports = function (t, e, n) {
           var o = !1;
@@ -2511,7 +2511,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           if (e = e || 0, r = r || n, t.slice) return t.slice(e, r);
           if (e < 0 && (e += n), r < 0 && (r += n), r > n && (r = n), e >= n || e >= r || 0 === n) return new ArrayBuffer(0);
 
-          for (var o = new Uint8Array(t), i = new Uint8Array(r - e), s = e, a = 0; s < r; s++, a++) i[a] = o[s];
+          for (var o = new Uint8Array(t), i = new Uint8Array(r - e), s = e, a = 0; s < r; s++ , a++) i[a] = o[s];
 
           return i.buffer;
         };
@@ -2530,37 +2530,37 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e) {
         e.read = function (t, e, r, n, o) {
           var i,
-              s,
-              a = 8 * o - n - 1,
-              u = (1 << a) - 1,
-              c = u >> 1,
-              f = -7,
-              h = r ? o - 1 : 0,
-              p = r ? -1 : 1,
-              l = t[e + h];
+            s,
+            a = 8 * o - n - 1,
+            u = (1 << a) - 1,
+            c = u >> 1,
+            f = -7,
+            h = r ? o - 1 : 0,
+            p = r ? -1 : 1,
+            l = t[e + h];
 
           for (h += p, i = l & (1 << -f) - 1, l >>= -f, f += a; f > 0; i = 256 * i + t[e + h], h += p, f -= 8);
 
           for (s = i & (1 << -f) - 1, i >>= -f, f += n; f > 0; s = 256 * s + t[e + h], h += p, f -= 8);
 
-          if (0 === i) i = 1 - c;else {
+          if (0 === i) i = 1 - c; else {
             if (i === u) return s ? NaN : 1 / 0 * (l ? -1 : 1);
             s += Math.pow(2, n), i -= c;
           }
           return (l ? -1 : 1) * s * Math.pow(2, i - n);
         }, e.write = function (t, e, r, n, o, i) {
           var s,
-              a,
-              u,
-              c = 8 * i - o - 1,
-              f = (1 << c) - 1,
-              h = f >> 1,
-              p = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
-              l = n ? 0 : i - 1,
-              d = n ? 1 : -1,
-              y = e < 0 || 0 === e && 1 / e < 0 ? 1 : 0;
+            a,
+            u,
+            c = 8 * i - o - 1,
+            f = (1 << c) - 1,
+            h = f >> 1,
+            p = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
+            l = n ? 0 : i - 1,
+            d = n ? 1 : -1,
+            y = e < 0 || 0 === e && 1 / e < 0 ? 1 : 0;
 
-          for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (a = isNaN(e) ? 1 : 0, s = f) : (s = Math.floor(Math.log(e) / Math.LN2), e * (u = Math.pow(2, -s)) < 1 && (s--, u *= 2), (e += s + h >= 1 ? p / u : p * Math.pow(2, 1 - h)) * u >= 2 && (s++, u /= 2), s + h >= f ? (a = 0, s = f) : s + h >= 1 ? (a = (e * u - 1) * Math.pow(2, o), s += h) : (a = e * Math.pow(2, h - 1) * Math.pow(2, o), s = 0)); o >= 8; t[r + l] = 255 & a, l += d, a /= 256, o -= 8);
+          for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (a = isNaN(e) ? 1 : 0, s = f) : (s = Math.floor(Math.log(e) / Math.LN2), e * (u = Math.pow(2, -s)) < 1 && (s-- , u *= 2), (e += s + h >= 1 ? p / u : p * Math.pow(2, 1 - h)) * u >= 2 && (s++ , u /= 2), s + h >= f ? (a = 0, s = f) : s + h >= 1 ? (a = (e * u - 1) * Math.pow(2, o), s += h) : (a = e * Math.pow(2, h - 1) * Math.pow(2, o), s = 0)); o >= 8; t[r + l] = 255 & a, l += d, a /= 256, o -= 8);
 
           for (s = s << o | a, c += o; c > 0; t[r + l] = 255 & s, l += d, s /= 256, c -= 8);
 
@@ -2570,8 +2570,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
         e.byteLength = function (t) {
           var e = c(t),
-              r = e[0],
-              n = e[1];
+            r = e[0],
+            n = e[1];
           return 3 * (r + n) / 4 - n;
         }, e.toByteArray = function (t) {
           for (var e, r = c(t), n = r[0], s = r[1], a = new i(NaN), u = 0, f = s > 0 ? n - 4 : n, h = 0; h < f; h += 4) e = o[t.charCodeAt(h)] << 18 | o[t.charCodeAt(h + 1)] << 12 | o[t.charCodeAt(h + 2)] << 6 | o[t.charCodeAt(h + 3)], a[u++] = e >> 16 & 255, a[u++] = e >> 8 & 255, a[u++] = 255 & e;
@@ -2609,8 +2609,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
            * @license  MIT
            */
           var n = r(23),
-              o = r(22),
-              i = r(21);
+            o = r(22),
+            i = r(21);
 
           function s() {
             return u.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
@@ -2641,7 +2641,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             }(t, e, r, n) : "string" == typeof e ? function (t, e, r) {
               if ("string" == typeof r && "" !== r || (r = "utf8"), !u.isEncoding(r)) throw new TypeError('"encoding" must be a valid string encoding');
               var n = 0 | d(e, r),
-                  o = (t = a(t, n)).write(e, r);
+                o = (t = a(t, n)).write(e, r);
               return o !== n && (t = t.slice(0, o)), t;
             }(t, e, r) : function (t, e) {
               if (u.isBuffer(e)) {
@@ -2690,7 +2690,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             var r = t.length;
             if (0 === r) return 0;
 
-            for (var n = !1;;) switch (e) {
+            for (var n = !1; ;) switch (e) {
               case "ascii":
               case "latin1":
               case "binary":
@@ -2742,9 +2742,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
           function v(t, e, r, n, o) {
             var i,
-                s = 1,
-                a = t.length,
-                u = e.length;
+              s = 1,
+              a = t.length,
+              u = e.length;
 
             if (void 0 !== n && ("ucs2" === (n = String(n).toLowerCase()) || "ucs-2" === n || "utf16le" === n || "utf-16le" === n)) {
               if (t.length < 2 || e.length < 2) return -1;
@@ -2827,12 +2827,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
             for (var n = [], o = e; o < r;) {
               var i,
-                  s,
-                  a,
-                  u,
-                  c = t[o],
-                  f = null,
-                  h = c > 239 ? 4 : c > 223 ? 3 : c > 191 ? 2 : 1;
+                s,
+                a,
+                u,
+                c = t[o],
+                f = null,
+                h = c > 239 ? 4 : c > 223 ? 3 : c > 191 ? 2 : 1;
               if (o + h <= r) switch (h) {
                 case 1:
                   c < 128 && (f = c);
@@ -2927,7 +2927,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             var r;
             if (void 0 === e) for (e = 0, r = 0; r < t.length; ++r) e += t[r].length;
             var n = u.allocUnsafe(e),
-                o = 0;
+              o = 0;
 
             for (r = 0; r < t.length; ++r) {
               var s = t[r];
@@ -2965,7 +2965,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
               if ((void 0 === r || r > this.length) && (r = this.length), r <= 0) return "";
               if ((r >>>= 0) <= (e >>>= 0)) return "";
 
-              for (t || (t = "utf8");;) switch (t) {
+              for (t || (t = "utf8"); ;) switch (t) {
                 case "hex":
                   return T(this, e, r);
 
@@ -2999,7 +2999,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             return this === t || 0 === u.compare(this, t);
           }, u.prototype.inspect = function () {
             var t = "",
-                r = e.INSPECT_MAX_BYTES;
+              r = e.INSPECT_MAX_BYTES;
             return this.length > 0 && (t = this.toString("hex", 0, r).match(/.{2}/g).join(" "), this.length > r && (t += " ... ")), "<Buffer " + t + ">";
           }, u.prototype.compare = function (t, e, r, n, o) {
             if (!u.isBuffer(t)) throw new TypeError("Argument must be a Buffer");
@@ -3022,7 +3022,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }, u.prototype.lastIndexOf = function (t, e, r) {
             return g(this, t, e, r, !1);
           }, u.prototype.write = function (t, e, r, n) {
-            if (void 0 === e) n = "utf8", r = this.length, e = 0;else if (void 0 === r && "string" == typeof e) n = e, r = this.length, e = 0;else {
+            if (void 0 === e) n = "utf8", r = this.length, e = 0; else if (void 0 === r && "string" == typeof e) n = e, r = this.length, e = 0; else {
               if (!isFinite(e)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
               e |= 0, isFinite(r) ? (r |= 0, void 0 === n && (n = "utf8")) : (n = r, r = void 0);
             }
@@ -3030,7 +3030,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             if ((void 0 === r || r > o) && (r = o), t.length > 0 && (r < 0 || e < 0) || e > this.length) throw new RangeError("Attempt to write outside buffer bounds");
             n || (n = "utf8");
 
-            for (var i = !1;;) switch (n) {
+            for (var i = !1; ;) switch (n) {
               case "hex":
                 return b(this, t, e, r);
 
@@ -3137,8 +3137,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
           u.prototype.slice = function (t, e) {
             var r,
-                n = this.length;
-            if (t = ~~t, e = void 0 === e ? n : ~~e, t < 0 ? (t += n) < 0 && (t = 0) : t > n && (t = n), e < 0 ? (e += n) < 0 && (e = 0) : e > n && (e = n), e < t && (e = t), u.TYPED_ARRAY_SUPPORT) (r = this.subarray(t, e)).__proto__ = u.prototype;else {
+              n = this.length;
+            if (t = ~~t, e = void 0 === e ? n : ~~e, t < 0 ? (t += n) < 0 && (t = 0) : t > n && (t = n), e < 0 ? (e += n) < 0 && (e = 0) : e > n && (e = n), e < t && (e = t), u.TYPED_ARRAY_SUPPORT) (r = this.subarray(t, e)).__proto__ = u.prototype; else {
               var o = e - t;
               r = new u(o, void 0);
 
@@ -3204,7 +3204,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }, u.prototype.writeUIntLE = function (t, e, r, n) {
             t = +t, e |= 0, r |= 0, n || C(this, t, e, r, Math.pow(2, 8 * r) - 1, 0);
             var o = 1,
-                i = 0;
+              i = 0;
 
             for (this[e] = 255 & t; ++i < r && (o *= 256);) this[e + i] = t / o & 255;
 
@@ -3212,7 +3212,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           }, u.prototype.writeUIntBE = function (t, e, r, n) {
             t = +t, e |= 0, r |= 0, n || C(this, t, e, r, Math.pow(2, 8 * r) - 1, 0);
             var o = r - 1,
-                i = 1;
+              i = 1;
 
             for (this[e + o] = 255 & t; --o >= 0 && (i *= 256);) this[e + o] = t / i & 255;
 
@@ -3234,8 +3234,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             }
 
             var i = 0,
-                s = 1,
-                a = 0;
+              s = 1,
+              a = 0;
 
             for (this[e] = 255 & t; ++i < r && (s *= 256);) t < 0 && 0 === a && 0 !== this[e + i - 1] && (a = 1), this[e + i] = (t / s >> 0) - a & 255;
 
@@ -3247,8 +3247,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             }
 
             var i = r - 1,
-                s = 1,
-                a = 0;
+              s = 1,
+              a = 0;
 
             for (this[e + i] = 255 & t; --i >= 0 && (s *= 256);) t < 0 && 0 === a && 0 !== this[e + i + 1] && (a = 1), this[e + i] = (t / s >> 0) - a & 255;
 
@@ -3279,8 +3279,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             if (n < 0) throw new RangeError("sourceEnd out of bounds");
             n > this.length && (n = this.length), t.length - e < n - r && (n = t.length - e + r);
             var o,
-                i = n - r;
-            if (this === t && r < e && e < n) for (o = i - 1; o >= 0; --o) t[o + e] = this[o + r];else if (i < 1e3 || !u.TYPED_ARRAY_SUPPORT) for (o = 0; o < i; ++o) t[o + e] = this[o + r];else Uint8Array.prototype.set.call(t, this.subarray(r, r + i), e);
+              i = n - r;
+            if (this === t && r < e && e < n) for (o = i - 1; o >= 0; --o) t[o + e] = this[o + r]; else if (i < 1e3 || !u.TYPED_ARRAY_SUPPORT) for (o = 0; o < i; ++o) t[o + e] = this[o + r]; else Uint8Array.prototype.set.call(t, this.subarray(r, r + i), e);
             return i;
           }, u.prototype.fill = function (t, e, r, n) {
             if ("string" == typeof t) {
@@ -3296,9 +3296,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             if (e < 0 || this.length < e || this.length < r) throw new RangeError("Out of range index");
             if (r <= e) return this;
             var i;
-            if (e >>>= 0, r = void 0 === r ? this.length : r >>> 0, t || (t = 0), "number" == typeof t) for (i = e; i < r; ++i) this[i] = t;else {
+            if (e >>>= 0, r = void 0 === r ? this.length : r >>> 0, t || (t = 0), "number" == typeof t) for (i = e; i < r; ++i) this[i] = t; else {
               var s = u.isBuffer(t) ? t : j(new u(t, n).toString()),
-                  a = s.length;
+                a = s.length;
 
               for (i = 0; i < r - e; ++i) this[i + e] = s[i % a];
             }
@@ -3379,9 +3379,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e, r) {
         (function (e) {
           var n = r(20),
-              o = Object.prototype.toString,
-              i = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === o.call(Blob),
-              s = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === o.call(File);
+            o = Object.prototype.toString,
+            i = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === o.call(Blob),
+            s = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === o.call(File);
 
           t.exports = function t(r) {
             if (!r || "object" != typeof r) return !1;
@@ -3403,7 +3403,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e) {
         t.exports = Object.keys || function (t) {
           var e = [],
-              r = Object.prototype.hasOwnProperty;
+            r = Object.prototype.hasOwnProperty;
 
           for (var n in t) r.call(t, n) && e.push(n);
 
@@ -3412,13 +3412,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e, r) {
         (function (e) {
           var n,
-              o = r(5),
-              i = r(1),
-              s = r(3),
-              a = r(13),
-              u = r(12),
-              c = r(2)("engine.io-client:websocket"),
-              f = e.WebSocket || e.MozWebSocket;
+            o = r(5),
+            i = r(1),
+            s = r(3),
+            a = r(13),
+            u = r(12),
+            c = r(2)("engine.io-client:websocket"),
+            f = e.WebSocket || e.MozWebSocket;
           if ("undefined" == typeof window) try {
             n = r(11);
           } catch (t) {
@@ -3433,11 +3433,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           h || "undefined" != typeof window || (h = n), t.exports = p, a(p, o), p.prototype.name = "websocket", p.prototype.supportsBinary = !0, p.prototype.doOpen = function () {
             if (c("wesocket do open: ", this.protocols), this.check()) {
               var t = this.uri(),
-                  e = this.protocols,
-                  r = {
-                agent: this.agent,
-                perMessageDeflate: this.perMessageDeflate
-              };
+                e = this.protocols,
+                r = {
+                  agent: this.agent,
+                  perMessageDeflate: this.perMessageDeflate
+                };
               r.pfx = this.pfx, r.key = this.key, r.passphrase = this.passphrase, r.cert = this.cert, r.ca = this.ca, r.ciphers = this.ciphers, r.rejectUnauthorized = this.rejectUnauthorized, this.extraHeaders && (r.headers = this.extraHeaders), this.localAddress && (r.localAddress = this.localAddress);
 
               try {
@@ -3466,7 +3466,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             for (var r, n = t.length, o = 0, s = n; o < s; o++) r = t[o], i.encodePacket(r, e.supportsBinary, function (t) {
               try {
                 e.ws.send(t);
-              } catch (t) {}
+              } catch (t) { }
 
               --n || (e.emit("flush"), setTimeout(function () {
                 e.writable = !0, e.emit("drain");
@@ -3478,8 +3478,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             void 0 !== this.ws && this.ws.close();
           }, p.prototype.uri = function () {
             var t = this.query || {},
-                e = this.secure ? "wss" : "ws",
-                r = "";
+              e = this.secure ? "wss" : "ws",
+              r = "";
             return this.port && ("wss" === e && 443 !== Number(this.port) || "ws" === e && 80 !== Number(this.port)) && (r = ":" + this.port), this.timestampRequests && (t[this.timestampParam] = u()), this.supportsBinary || (t.b64 = 1), (t = s.encode(t)).length && (t = "?" + t), e + "://" + (-1 !== this.hostname.indexOf(":") ? "[" + this.hostname + "]" : this.hostname) + r + this.path + t;
           }, p.prototype.check = function () {
             return !(!h || "__initialize" in h && this.name === p.prototype.name);
@@ -3488,12 +3488,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, function (t, e, r) {
         (function (e) {
           var n = r(6),
-              o = r(4),
-              i = r(2)("engine.io-client:socket"),
-              s = r(8),
-              a = r(1),
-              u = r(7),
-              c = r(3);
+            o = r(4),
+            i = r(2)("engine.io-client:socket"),
+            s = r(8),
+            a = r(1),
+            u = r(7),
+            c = r(3);
 
           function f(t, r) {
             if (!(this instanceof f)) return new f(t, r);
@@ -3548,7 +3548,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             return i("transport: ", o), o;
           }, f.prototype.open = function () {
             var t;
-            if (this.rememberUpgrade && f.priorWebsocketSuccess && -1 !== this.transports.indexOf("websocket")) t = "websocket";else {
+            if (this.rememberUpgrade && f.priorWebsocketSuccess && -1 !== this.transports.indexOf("websocket")) t = "websocket"; else {
               if (0 === this.transports.length) {
                 var e = this;
                 return void setTimeout(function () {
@@ -3584,8 +3584,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
             var e = this.createTransport(t, {
               probe: 1
             }),
-                r = !1,
-                n = this;
+              r = !1,
+              n = this;
 
             function o() {
               if (n.onlyBinaryUpgrades) {
@@ -3734,14 +3734,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     }, function (t, e, r) {
       (function (t) {
         var n = r(2),
-            o = r(9),
-            i = Object.prototype.toString,
-            s = "function" == typeof t.Blob || "[object BlobConstructor]" === i.call(t.Blob),
-            a = "function" == typeof t.File || "[object FileConstructor]" === i.call(t.File);
+          o = r(9),
+          i = Object.prototype.toString,
+          s = "function" == typeof t.Blob || "[object BlobConstructor]" === i.call(t.Blob),
+          a = "function" == typeof t.File || "[object FileConstructor]" === i.call(t.File);
         e.deconstructPacket = function (t) {
           var e = [],
-              r = t.data,
-              i = t;
+            r = t.data,
+            i = t;
           return i.data = function t(e, r) {
             if (!e) return e;
 
@@ -3769,19 +3769,19 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
             return e;
           }(r, e), i.attachments = e.length, {
-            packet: i,
-            buffers: e
-          };
+              packet: i,
+              buffers: e
+            };
         }, e.reconstructPacket = function (t, e) {
           return t.data = function t(e, r) {
             if (!e) return e;
             if (e && e._placeholder) return r[e.num];
-            if (n(e)) for (var o = 0; o < e.length; o++) e[o] = t(e[o], r);else if ("object" == typeof e) for (var i in e) e[i] = t(e[i], r);
+            if (n(e)) for (var o = 0; o < e.length; o++) e[o] = t(e[o], r); else if ("object" == typeof e) for (var i in e) e[i] = t(e[i], r);
             return e;
           }(t.data, e), t.attachments = void 0, t;
         }, e.removeBlobs = function (t, e) {
           var r = 0,
-              i = t;
+            i = t;
           !function t(u, c, f) {
             if (!u) return u;
 
@@ -3791,18 +3791,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
               h.onload = function () {
                 f ? f[c] = this.result : i = this.result, --r || e(i);
               }, h.readAsArrayBuffer(u);
-            } else if (n(u)) for (var p = 0; p < u.length; p++) t(u[p], p, u);else if ("object" == typeof u && !o(u)) for (var l in u) t(u[l], l, u);
+            } else if (n(u)) for (var p = 0; p < u.length; p++) t(u[p], p, u); else if ("object" == typeof u && !o(u)) for (var l in u) t(u[l], l, u);
           }(i), r || e(i);
         };
       }).call(this, r(1));
     }, function (t, e) {
       var r = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,
-          n = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
+        n = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
 
       t.exports = function (t) {
         var e = t,
-            o = t.indexOf("["),
-            i = t.indexOf("]");
+          o = t.indexOf("["),
+          i = t.indexOf("]");
         -1 != o && -1 != i && (t = t.substring(0, o) + t.substring(o, i).replace(/:/g, ";") + t.substring(i, t.length));
 
         for (var s = r.exec(t || ""), a = {}, u = 14; u--;) a[n[u]] = s[u] || "";
@@ -3812,7 +3812,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     }, function (t, e, r) {
       (function (e) {
         var n = r(21),
-            o = r(0)("socket.io-client:url");
+          o = r(0)("socket.io-client:url");
 
         t.exports = function (t, r) {
           var i = t;
@@ -3826,20 +3826,20 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }).call(this, r(1));
     }, function (t, e, r) {
       var n = r(22),
-          o = r(4),
-          i = r(8),
-          s = r(0)("socket.io-client");
+        o = r(4),
+        i = r(8),
+        s = r(0)("socket.io-client");
       t.exports = e = u;
       var a = e.managers = {};
 
       function u(t, e) {
         "object" == typeof t && (e = t, t = void 0), e = e || {};
         var r,
-            o = n(t),
-            u = o.source,
-            c = o.id,
-            f = o.path,
-            h = a[c] && f in a[c].nsps;
+          o = n(t),
+          u = o.source,
+          c = o.id,
+          f = o.path,
+          h = a[c] && f in a[c].nsps;
         return e.forceNew || e["force new connection"] || !1 === e.multiplex || h ? (s("ignoring socket cache for %s", u), r = i(u, e)) : (a[c] || (s("new io instance for %s", u), a[c] = i(u, e)), r = a[c]), o.query && !e.query && (e.query = o.query), r.socket(o.path, e);
       }
 
@@ -3848,14 +3848,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       t.exports = r(23);
     }]);
   });
-  });
+});
 
-  var io = unwrapExports(weapp_socket_io);
+var io = unwrapExports(weapp_socket_io);
 
-  // eslint-disable-next-line no-unused-vars
-  var regeneratorRuntime = require('./polyfill');
+// eslint-disable-next-line no-unused-vars
+var regeneratorRuntime = require('./polyfill');
 
-  var Auth =
+var Auth =
   /*#__PURE__*/
   function () {
     function Auth(options) {
@@ -3864,8 +3864,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }
 
       var _options = options,
-          _options$storageKey = _options.storageKey,
-          storageKey = _options$storageKey === void 0 ? 'tcb-token' : _options$storageKey;
+        _options$storageKey = _options.storageKey,
+        storageKey = _options$storageKey === void 0 ? 'tcb-token' : _options$storageKey;
       this.storageKey = storageKey;
 
       if (typeof wx !== 'undefined') {
@@ -3888,224 +3888,224 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 
       return token;
     }
-    /**
-     * 小程序用户鉴权
-     * @param {object} userInfo 小程序用户信息
-     * @return {string} 用户 jwt token
-     */
-    ;
+      /**
+       * 小程序用户鉴权
+       * @param {object} userInfo 小程序用户信息
+       * @return {string} 用户 jwt token
+       */
+      ;
 
     _proto.login =
-    /*#__PURE__*/
-    function () {
-      var _login = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(userInfo) {
-        var r, res;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return wx.cloud.callFunction({
-                  name: 'tcb-auth',
-                  data: {
-                    action: 'login',
-                    data: userInfo
-                  }
-                });
+      function () {
+        var _login = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee(userInfo) {
+            var r, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return wx.cloud.callFunction({
+                      name: 'tcb-auth',
+                      data: {
+                        action: 'login',
+                        data: userInfo
+                      }
+                    });
 
-              case 2:
-                r = _context.sent;
-                res = r.result;
+                  case 2:
+                    r = _context.sent;
+                    res = r.result;
 
-                if (!res.data) {
-                  _context.next = 9;
-                  break;
+                    if (!res.data) {
+                      _context.next = 9;
+                      break;
+                    }
+
+                    wx.setStorageSync(this.storageKey, res.data.token);
+                    return _context.abrupt("return", res.data.token);
+
+                  case 9:
+                    throw new Error('Login Failed');
+
+                  case 10:
+                  case "end":
+                    return _context.stop();
                 }
+              }
+            }, _callee, this);
+          }));
 
-                wx.setStorageSync(this.storageKey, res.data.token);
-                return _context.abrupt("return", res.data.token);
+        function login(_x) {
+          return _login.apply(this, arguments);
+        }
 
-              case 9:
-                throw new Error('Login Failed');
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function login(_x) {
-        return _login.apply(this, arguments);
-      }
-
-      return login;
-    }()
-    /**
-     * 小程序用户登出
-     */
-    ;
+        return login;
+      }()
+      /**
+       * 小程序用户登出
+       */
+      ;
 
     _proto.logout = function logout() {
       if (this.isMiniprogram) {
         wx.removeStorageSync(this.storageKey);
       }
     } // 首次授权后，可自动获取用户信息并登陆
-    ;
+      ;
 
     _proto.autoLogin =
-    /*#__PURE__*/
-    function () {
-      var _autoLogin = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2() {
-        var _this = this;
+      function () {
+        var _autoLogin = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee2() {
+            var _this = this;
 
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                return _context2.abrupt("return", new Promise(function (resolve, reject) {
-                  wx.getSetting({
-                    success: function success(res) {
-                      if (res.authSetting['scope.userInfo']) {
-                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                        wx.getUserInfo({
-                          success: function success(res) {
-                            if (!wx.getStorageSync(_this.storageKey)) {
-                              _this._getAuth(res);
-                            }
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    return _context2.abrupt("return", new Promise(function (resolve, reject) {
+                      wx.getSetting({
+                        success: function success(res) {
+                          if (res.authSetting['scope.userInfo']) {
+                            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                            wx.getUserInfo({
+                              success: function success(res) {
+                                if (!wx.getStorageSync(_this.storageKey)) {
+                                  _this._getAuth(res);
+                                }
 
-                            resolve(res);
-                          },
-                          fail: function fail() {
+                                resolve(res);
+                              },
+                              fail: function fail() {
+                                _this.logout();
+
+                                reject(new Error('wx.getUserInfo failed'));
+                              }
+                            });
+                          } else {
                             _this.logout();
 
-                            reject(new Error('wx.getUserInfo failed'));
+                            resolve(); // reject(new Error('scope.userInfo permission should be got.'));
                           }
-                        });
-                      } else {
-                        _this.logout();
+                        },
+                        fail: function fail() {
+                          _this.logout();
 
-                        resolve(); // reject(new Error('scope.userInfo permission should be got.'));
-                      }
-                    },
-                    fail: function fail() {
-                      _this.logout();
+                          reject(new Error('wx.getSetting failed'));
+                        }
+                      });
+                    }));
 
-                      reject(new Error('wx.getSetting failed'));
-                    }
-                  });
-                }));
+                  case 1:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
 
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
+        function autoLogin() {
+          return _autoLogin.apply(this, arguments);
+        }
 
-      function autoLogin() {
-        return _autoLogin.apply(this, arguments);
-      }
-
-      return autoLogin;
-    }()
-    /**
-     * 首次授权，获取用户信息并登陆
-     * @param {object} e 小程序授权按钮事件及数据
-     * @return {object} 用户信息
-     */
-    ;
+        return autoLogin;
+      }()
+      /**
+       * 首次授权，获取用户信息并登陆
+       * @param {object} e 小程序授权按钮事件及数据
+       * @return {object} 用户信息
+       */
+      ;
 
     _proto.tapToLogin =
-    /*#__PURE__*/
-    function () {
-      var _tapToLogin = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(e) {
-        var info;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                info = e.detail;
-                _context3.next = 3;
-                return this._getAuth(info);
+      function () {
+        var _tapToLogin = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee3(e) {
+            var info;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    info = e.detail;
+                    _context3.next = 3;
+                    return this._getAuth(info);
 
-              case 3:
-                return _context3.abrupt("return", info);
+                  case 3:
+                    return _context3.abrupt("return", info);
 
-              case 4:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
+                  case 4:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
 
-      function tapToLogin(_x2) {
-        return _tapToLogin.apply(this, arguments);
-      }
+        function tapToLogin(_x2) {
+          return _tapToLogin.apply(this, arguments);
+        }
 
-      return tapToLogin;
-    }();
+        return tapToLogin;
+      }();
 
     _proto._getAuth =
-    /*#__PURE__*/
-    function () {
-      var _getAuth2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(info) {
-        var result;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return this.login(info);
+      function () {
+        var _getAuth2 = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee4(info) {
+            var result;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    _context4.next = 2;
+                    return this.login(info);
 
-              case 2:
-                result = _context4.sent;
-                return _context4.abrupt("return", result);
+                  case 2:
+                    result = _context4.sent;
+                    return _context4.abrupt("return", result);
 
-              case 4:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
+                  case 4:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
 
-      function _getAuth(_x3) {
-        return _getAuth2.apply(this, arguments);
-      }
+        function _getAuth(_x3) {
+          return _getAuth2.apply(this, arguments);
+        }
 
-      return _getAuth;
-    }();
+        return _getAuth;
+      }();
 
     return Auth;
   }();
 
-  var utils = {
-    /**
-     * 检查是否函数
-     * @param {Any} func
-     * @return {Boolean}
-     */
-    isFunction: function isFunction(func) {
-      return typeof func === 'function';
-    }
-  };
+var utils = {
+  /**
+   * 检查是否函数
+   * @param {Any} func
+   * @return {Boolean}
+   */
+  isFunction: function isFunction(func) {
+    return typeof func === 'function';
+  }
+};
 
-  // eslint-disable-next-line no-unused-vars
-  var regeneratorRuntime$1 = require('./polyfill');
+// eslint-disable-next-line no-unused-vars
+var regeneratorRuntime$1 = require('./polyfill');
 
-  var TcbClientWS =
+var TcbClientWS =
   /*#__PURE__*/
   function () {
     function TcbClientWS(url, options) {
@@ -4137,173 +4137,173 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       }, this.options));
       return this.socket;
     }
-    /**
-     * 断开 WebSocket 连接
-     */
-    ;
+      /**
+       * 断开 WebSocket 连接
+       */
+      ;
 
     _proto.close = function close() {
       if (this.socket) {
         this.socket.close();
       }
     }
-    /**
-     * 加入房间
-     * @param {String} roomID 房间号
-     * @return {Promise}
-     */
-    ;
+      /**
+       * 加入房间
+       * @param {String} roomID 房间号
+       * @return {Promise}
+       */
+      ;
 
     _proto.join =
-    /*#__PURE__*/
-    function () {
-      var _join = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime$1.mark(function _callee(roomID) {
-        var _this = this;
+      function () {
+        var _join = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime$1.mark(function _callee(roomID) {
+            var _this = this;
 
-        return regeneratorRuntime$1.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!this.roomID) {
-                  _context.next = 3;
-                  break;
+            return regeneratorRuntime$1.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!this.roomID) {
+                      _context.next = 3;
+                      break;
+                    }
+
+                    _context.next = 3;
+                    return this.leave();
+
+                  case 3:
+                    return _context.abrupt("return", new Promise(function (resolve, reject) {
+                      if (!roomID) {
+                        return reject(new Error('roomID is null.'));
+                      }
+
+                      _this.socket.emit('tcb-join-room', roomID, function (data) {
+                        _this.roomID = roomID;
+                        resolve(data);
+                      });
+                    }));
+
+                  case 4:
+                  case "end":
+                    return _context.stop();
                 }
+              }
+            }, _callee, this);
+          }));
 
-                _context.next = 3;
-                return this.leave();
+        function join(_x) {
+          return _join.apply(this, arguments);
+        }
 
-              case 3:
-                return _context.abrupt("return", new Promise(function (resolve, reject) {
-                  if (!roomID) {
-                    return reject(new Error('roomID is null.'));
-                  }
-
-                  _this.socket.emit('tcb-join-room', roomID, function (data) {
-                    _this.roomID = roomID;
-                    resolve(data);
-                  });
-                }));
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function join(_x) {
-        return _join.apply(this, arguments);
-      }
-
-      return join;
-    }()
-    /**
-     * 离开房间
-     * @param {String} roomIDParam 房间号
-     * @return {Promise}
-     */
-    ;
+        return join;
+      }()
+      /**
+       * 离开房间
+       * @param {String} roomIDParam 房间号
+       * @return {Promise}
+       */
+      ;
 
     _proto.leave =
-    /*#__PURE__*/
-    function () {
-      var _leave = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime$1.mark(function _callee2(roomIDParam) {
-        var _this2 = this;
+      function () {
+        var _leave = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime$1.mark(function _callee2(roomIDParam) {
+            var _this2 = this;
 
-        var roomID;
-        return regeneratorRuntime$1.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (roomIDParam === void 0) {
-                  roomIDParam = null;
+            var roomID;
+            return regeneratorRuntime$1.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    if (roomIDParam === void 0) {
+                      roomIDParam = null;
+                    }
+
+                    roomID = this.roomID || roomIDParam;
+                    return _context2.abrupt("return", new Promise(function (resolve, reject) {
+                      if (!roomID) {
+                        return reject(new Error('roomID is null.'));
+                      }
+
+                      _this2.socket.emit('tcb-leave-room', roomID, function (data) {
+                        _this2.roomID = null;
+                        resolve(data);
+                      });
+                    }));
+
+                  case 3:
+                  case "end":
+                    return _context2.stop();
                 }
+              }
+            }, _callee2, this);
+          }));
 
-                roomID = this.roomID || roomIDParam;
-                return _context2.abrupt("return", new Promise(function (resolve, reject) {
-                  if (!roomID) {
-                    return reject(new Error('roomID is null.'));
-                  }
+        function leave(_x2) {
+          return _leave.apply(this, arguments);
+        }
 
-                  _this2.socket.emit('tcb-leave-room', roomID, function (data) {
-                    _this2.roomID = null;
-                    resolve(data);
-                  });
-                }));
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function leave(_x2) {
-        return _leave.apply(this, arguments);
-      }
-
-      return leave;
-    }()
-    /**
-     * 发送消息
-     * @param {*} param
-     * @param {String} param.event 消息事件
-     * @param {String} param.message 消息数据
-     * @return {Promise<data>}
-     */
-    ;
+        return leave;
+      }()
+      /**
+       * 发送消息
+       * @param {*} param
+       * @param {String} param.event 消息事件
+       * @param {String} param.message 消息数据
+       * @return {Promise<data>}
+       */
+      ;
 
     _proto.send =
-    /*#__PURE__*/
-    function () {
-      var _send = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime$1.mark(function _callee3(_ref) {
-        var _this3 = this;
+      function () {
+        var _send = _asyncToGenerator(
+          /*#__PURE__*/
+          regeneratorRuntime$1.mark(function _callee3(_ref) {
+            var _this3 = this;
 
-        var event, message;
-        return regeneratorRuntime$1.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                event = _ref.event, message = _ref.message;
-                return _context3.abrupt("return", new Promise(function (resolve, reject) {
-                  _this3.socket.emit(event, message, function (data) {
-                    resolve(data);
-                  });
-                }));
+            var event, message;
+            return regeneratorRuntime$1.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    event = _ref.event, message = _ref.message;
+                    return _context3.abrupt("return", new Promise(function (resolve, reject) {
+                      _this3.socket.emit(event, message, function (data) {
+                        resolve(data);
+                      });
+                    }));
 
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
+                  case 2:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
 
-      function send(_x3) {
-        return _send.apply(this, arguments);
-      }
+        function send(_x3) {
+          return _send.apply(this, arguments);
+        }
 
-      return send;
-    }()
-    /**
-     * 接收消息
-     * @param {*} param
-     * @param {String} param.event 消息事件
-     * @param {String} param.callback 数据接受回调
-     */
-    ;
+        return send;
+      }()
+      /**
+       * 接收消息
+       * @param {*} param
+       * @param {String} param.event 消息事件
+       * @param {String} param.callback 数据接受回调
+       */
+      ;
 
     _proto.receive = function receive(_ref2) {
       var event = _ref2.event,
-          callback = _ref2.callback;
+        callback = _ref2.callback;
       this.socket.on(event, function (data, ack) {
         utils.isFunction(callback) && callback(data);
         utils.isFunction(ack) && ack(data);
@@ -4320,4 +4320,4 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     return TcbClientWS;
   }();
 
-  export default TcbClientWS;
+export default TcbClientWS;

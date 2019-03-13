@@ -13,7 +13,8 @@
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| namespace | string | 否 | | 命名空间，默认值：`/`
+| namespace | string | 否 | `/` | 命名空间
+| isLogOff | boolean | 否 | false | 是否关闭日志打印
 
 ### 返回值说明
 
@@ -284,5 +285,27 @@ tcbServerWS.open({
     error: (err) => {
 
     }
+});
+```
+
+## log
+
+### 参数说明
+
+| 字段 | 类型 | 必填 | 默认值 | 说明
+| --- | --- | --- | --- | ---
+| jsonObj | object json 对象 | 是 | | 需要断开的 socket
+| logPathParam | string | 否 | 在 windows 系统下，默认存放在 `./server.log`，而在 mac 或 linux 系统下，默认存放在 `/data/logs/server.log`。本接口不保证文件存在，使用前请先创建好日志文件 | 存放日志的本地路径
+
+### 返回值说明
+
+|类型 | 说明
+| --- | ---
+| Promise | Promise
+
+### 示例
+```js
+tcbServerWS.log({
+    a: 1
 });
 ```

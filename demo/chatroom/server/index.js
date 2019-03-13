@@ -92,6 +92,11 @@ tcbServerWS.open({
     connect: async (socket) => {
         const { user = {}} = socket;
         console.log('connect ' + socket.id);
+
+        await tcbServerWS.log({
+            connect: socket.id
+        });
+
         appData.sockets[socket.id] = {
             room: ''
         };
@@ -188,7 +193,7 @@ tcbServerWS.open({
 
     },
     error: (e) => {
-      console.log(e);
+        console.log(e);
     },
     disconnecting: (socket) => {
         console.log('disconnecting ' + socket.id);

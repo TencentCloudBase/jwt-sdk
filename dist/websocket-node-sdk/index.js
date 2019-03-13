@@ -11,6 +11,9 @@ var utils = {
     }
 };
 
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
 const socketIO = require('socket.io');
 const Tcb = require('tcb-admin-node');
 
@@ -235,7 +238,33 @@ class TcbServerWS {
         });
     }
 
+    /**
+     * 打log
+     * @param {Ojbect} jsonObj object 对象
+     * @param {String} logPathParam 用户自定义的log路径
+     */
+    async log(jsonObj, logPathParam = null) {
+        console.log(jsonObj);
 
+        let isWin = os.platform() === 'win32';
+        let logPath = isWin ? path.resolve('./server.log') : '/data/logs/server.log';
+        logPath = logPathParam ? logPathParam : logPath;
+
+        return new Promise((resolve, reject) => {
+            try {
+                let jsonStr = JSON.stringify(jsonObj);
+                fs.appendFile(logPath, `${jsonStr}\r\n`, (err) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve();
+                });
+            }
+            catch (e) {
+                reject(e);
+            }
+        });
+    }
 }
 
 module.exports = TcbServerWS;
