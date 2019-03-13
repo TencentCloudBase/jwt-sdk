@@ -31,7 +31,7 @@ export default class Auth {
      */
     async login(userInfo) {
         let r = await wx.cloud.callFunction({
-            name: 'auth',
+            name: 'tcb-auth',
             data: {
                 action: 'login',
                 data: userInfo

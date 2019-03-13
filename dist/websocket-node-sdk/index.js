@@ -37,7 +37,7 @@ class TcbServerWS {
      */
     async verifyLogin(token) {
         return this.tcb.callFunction({
-            name: 'auth',
+            name: 'tcb-auth',
             data: {
                 action: 'verify',
                 token
@@ -234,6 +234,8 @@ class TcbServerWS {
             utils.isFunction(ack) && ack(data); // 告诉客户端，我接收到了哪些数据
         });
     }
+
+
 }
 
 module.exports = TcbServerWS;

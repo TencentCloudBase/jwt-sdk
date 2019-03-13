@@ -3908,7 +3908,7 @@ function () {
             case 0:
               _context.next = 2;
               return wx.cloud.callFunction({
-                name: 'auth',
+                name: 'tcb-auth',
                 data: {
                   action: 'login',
                   data: userInfo
@@ -4253,7 +4253,7 @@ function () {
   /**
    * 发送消息
    * @param {*} param
-   * @param {String} param.mode 发送消息的模式
+   * @param {String} param.event 消息事件
    * @param {String} param.message 消息数据
    * @return {Promise<data>}
    */
@@ -4292,7 +4292,14 @@ function () {
     }
 
     return send;
-  }();
+  }()
+  /**
+   * 接收消息
+   * @param {*} param
+   * @param {String} param.event 消息事件
+   * @param {String} param.callback 数据接受回调
+   */
+  ;
 
   _proto.receive = function receive(_ref2) {
     var event = _ref2.event,
