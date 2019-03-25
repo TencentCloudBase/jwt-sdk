@@ -23,6 +23,7 @@ class TcbServerWS {
 
         this.server = server;
         this.namespace = options.namespace || '/';
+        this.isLogOff = options.isLogOff || false;
         this.options = options;
 
         this.io = this.io = socketIO(server, {
@@ -244,7 +245,9 @@ class TcbServerWS {
      * @param {String} logPathParam 用户自定义的log路径
      */
     async log(jsonObj, logPathParam = null) {
-        console.log(jsonObj);
+        if (this.isLogOff) {
+            return Promise.resolve();
+        }
 
         let isWin = os.platform() === 'win32';
         let logPath = isWin ? path.resolve('./server.log') : '/data/logs/server.log';

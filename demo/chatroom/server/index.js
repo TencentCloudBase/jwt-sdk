@@ -11,49 +11,68 @@ app.use(serve(path.resolve(__dirname, './static')));
 // 必须放在在所有app.use()之后
 const server = require('http').Server(app.callback());
 const tcbServerWS = new TcbServerWS(server, { config });
+const DB = tcbServerWS.tcb.database();
 
-let appData = {
-    roomList: {
-        'Lobby': {}
-    },
-    sockets: {},
+async function leaveRoom(socket) {
+    try {
+        // 离开房间，从房间中将用户自己删除，如果再没有用户了，将房间也删除
+        let user = socket.user;
+        let room = await DB.collection('rooms').where({
+            room: socket.room,
+        }).get();
+        let roomData = room.data || [];
 
-    async joinRoom(socket, roomID) {
-        appData.sockets[socket.id] = {
-            room: roomID
-        };
+        if (roomData.length) {
+            let member = roomData[0].member;
+            let index = member.indexOf(user.openId);
 
-        if (!this.roomList.hasOwnProperty(roomID)) {
-            this.roomList[roomID] = {};
-        }
+            if (index > -1) {
+                member.splice(index, 1);
+            }
 
-        if (!this.roomList[roomID].hasOwnProperty(socket.id)) {
-            this.roomList[roomID][socket.id] = true;
-        }
-
-        await tcbServerWS.send(socket, { mode: 'broadcast', event: 'room-list', message: this.roomList });
-        await tcbServerWS.send(socket, { event: 'room-list', message: this.roomList });
-
-    },
-
-    async leaveRoom(socket) {
-        let roomID = this.sockets[socket.id].room;
-        this.sockets[socket.id] = {
-            room: ''
-        };
-
-        if (this.roomList.hasOwnProperty(roomID) && this.roomList[roomID].hasOwnProperty(socket.id)) {
-            delete this.roomList[roomID][socket.id];
-
-            if (roomID !== 'Lobby' && !Object.keys(this.roomList[roomID]).length) {
-                delete this.roomList[roomID];
+            // 还有用户，则更新用户清单
+            if (member.length) {
+                await DB.collection('rooms').doc(roomData[0]._id).update({
+                    member
+                });
+            }
+            // 没有用户连房间也删除
+            else {
+                await DB.collection('rooms').doc(roomData[0]._id).remove();
             }
         }
-
-        await tcbServerWS.send(socket, { mode: 'broadcast', event: 'room-list', message: this.roomList });
-        await tcbServerWS.send(socket, { event: 'room-list', message: this.roomList });
     }
-};
+    catch (e) {
+        console.error(e);
+    }
+}
+
+async function joinRoom(socket, roomID) {
+    try {
+        let room = await DB.collection('rooms').where({
+            room: roomID,
+        }).get();
+        let roomData = room.data || [];
+
+        if (!roomData.length) {
+            await DB.collection('rooms').add({
+                room: roomID,
+                member: [socket.user.openId]
+            });
+        }
+        else {
+            let member = new Set(roomData[0].member);
+            member.add(socket.user.openId);
+            await DB.collection('rooms').doc(roomData[0]._id).update({
+                member: Array.from(member)
+            });
+        }
+        socket.room = roomID;
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
 
 async function sendMessage(socket, { roomID, event, msgRoom, msgSelf }) {
     await tcbServerWS.send(socket, {
@@ -74,59 +93,21 @@ async function sendMessage(socket, { roomID, event, msgRoom, msgSelf }) {
     });
 }
 
-// tcbServerWS.io.use(async (socket, next) => {
-//     let token = socket.handshake.query.token;
-
-//     let res = (await tcbServerWS.verifyLogin(token)).result;
-//     // console.log(res);
-
-//     if (res.code) {
-//         return next(new Error(res.code));
-//     } else {
-//         socket.user = res;
-//         return next();
-//     }
-// });
-
 tcbServerWS.open({
     connect: async (socket) => {
         const { user = {}} = socket;
         console.log('connect ' + socket.id);
 
-        await tcbServerWS.log({
-            connect: socket.id
-        });
-
-        appData.sockets[socket.id] = {
-            room: ''
-        };
+        // await tcbServerWS.log({
+        //     connect: socket.id
+        // });
 
         tcbServerWS.onJoin(socket, async (roomID) => {
             // 加入房间
             await tcbServerWS.join(socket, roomID);
             let event = 'message';
 
-            if (appData.sockets[socket.id].room) {
-                let msgRoom = {
-                    type: 'exit',
-                    nickName: user.nickName || 'anonymity',
-                    avatarUrl: user.avatarUrl,
-                    value: `exits room ${roomID}.`
-                };
-                let msgSelf = {
-                    type: 'exit',
-                    nickName: user.nickName || 'anonymity',
-                    avatarUrl: user.avatarUrl,
-                    isSelf: true,
-                    value: `exit room ${roomID}.`
-                };
-
-                await appData.leaveRoom(socket);
-
-                sendMessage(socket, { roomID: appData.sockets[socket.id].room, event, msgRoom, msgSelf });
-            }
-
-            await appData.joinRoom(socket, roomID);
+            await joinRoom(socket, roomID);
 
             let msgRoom = {
                 type: 'join',
@@ -148,8 +129,8 @@ tcbServerWS.open({
 
         tcbServerWS.onLeave(socket, async (data) => {
             // 离开房间
-            let roomID = appData.sockets[socket.id].room;
-            await appData.leaveRoom(socket);
+            let roomID = socket.room;
+            await leaveRoom(socket);
             await tcbServerWS.leave(socket, roomID);
 
             let event = 'message';
@@ -171,7 +152,7 @@ tcbServerWS.open({
         tcbServerWS.receive(socket, {
             event: 'message',
             callback: (data) => {
-                let roomID = appData.sockets[socket.id].room;
+                let roomID = socket.room;
                 let event = 'message';
                 let msgRoom = {
                     type: 'message',
@@ -201,9 +182,9 @@ tcbServerWS.open({
     disconnect: async (socket) => {
         const { user = {}} = socket;
         console.log('disconnect ' + socket.id);
-        let roomID = appData.sockets[socket.id].room;
+        let roomID = socket.room;
 
-        await appData.leaveRoom(socket);
+        await leaveRoom(socket);
 
         let event = 'message';
         let message = {

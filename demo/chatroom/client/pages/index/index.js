@@ -5,11 +5,46 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: null
+    userInfo: null,
+    index: 0,
+    joinType: [
+      '新建房间',
+      '已有房间'
+    ],
+    selectedRoomIndex: 0,
+    joinRooms: [],
+    room: null,
   },
 
-  onLoad: function() {
+  bindJoinRoomChange(e) {
+    let index = e.detail.value
+    this.setData({
+      selectedRoomIndex: index,
+      room: this.data.joinRooms[index]
+    })
+  },
+
+  bindJoinTypeChange(e) {
+    let index = e.detail.value
+    let joinRooms = this.data.joinRooms
+    let joinRoom = joinRooms.length ? joinRooms[0] : null
+
+    this.setData({
+      index,
+      room: (index === 0) ? null : joinRoom
+    })
+  },
+
+  typeRoom(e) {
+    let room = e.detail.value
+    this.setData({
+      room
+    })
+  },
+
+  onLoad() {
     this.login()
+    this.getRooms()
   },
 
   async login(e) {
@@ -34,6 +69,22 @@ Page({
     }
   },
 
+  async getRooms() {
+    let db = wx.cloud.database()
+    let result = await db.collection('rooms').field({ room: true }).get()
+    
+    if (result.data && result.data.length) {
+      let joinRooms = [];
+      result.data.forEach((item) => {
+        joinRooms.push(item.room)
+      })
+      
+      this.setData({
+        joinRooms
+      })
+    }
+  },
+
   // 登陆成功后，于本页面设置用户数据
   setUserInfo(info) {
     this.setData({
@@ -44,8 +95,15 @@ Page({
   /**
    * 加入房间
    */
-  join(e) {
-    let room = e.detail.value.room
+  join() {
+    let room = this.data.room
+    if (!room) {
+      return wx.showToast({
+        title: '请输入房间号',
+        icon: 'none',
+        mask: true
+      })
+    }
     wx.setStorageSync('userInfo', this.data.userInfo);
     wx.navigateTo({
       url: `/pages/room/index?room=${room}`,

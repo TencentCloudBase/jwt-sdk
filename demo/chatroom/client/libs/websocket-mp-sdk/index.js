@@ -4131,10 +4131,24 @@ var TcbClientWS =
     /**
      *  建立 WebSocket 连接
      */
-    _proto.open = function open() {
+    _proto.open = function open(_temp) {
+      var _this = this;
+
+      var _ref = _temp === void 0 ? {} : _temp,
+        _ref$connect = _ref.connect,
+        connect = _ref$connect === void 0 ? null : _ref$connect,
+        _ref$disconnect = _ref.disconnect,
+        disconnect = _ref$disconnect === void 0 ? null : _ref$disconnect;
+
       this.socket = io(this.url, _extends({
         transports: ['websocket']
       }, this.options));
+      this.socket.on('connect', function () {
+        utils.isFunction(connect) && connect.bind(_this)(_this.socket);
+      });
+      this.socket.on('disconnect', function () {
+        utils.isFunction(disconnect) && disconnect.bind(_this)(_this.socket);
+      });
       return this.socket;
     }
       /**
@@ -4160,7 +4174,7 @@ var TcbClientWS =
         var _join = _asyncToGenerator(
           /*#__PURE__*/
           regeneratorRuntime$1.mark(function _callee(roomID) {
-            var _this = this;
+            var _this2 = this;
 
             return regeneratorRuntime$1.wrap(function _callee$(_context) {
               while (1) {
@@ -4180,8 +4194,8 @@ var TcbClientWS =
                         return reject(new Error('roomID is null.'));
                       }
 
-                      _this.socket.emit('tcb-join-room', roomID, function (data) {
-                        _this.roomID = roomID;
+                      _this2.socket.emit('tcb-join-room', roomID, function (data) {
+                        _this2.roomID = roomID;
                         resolve(data);
                       });
                     }));
@@ -4213,7 +4227,7 @@ var TcbClientWS =
         var _leave = _asyncToGenerator(
           /*#__PURE__*/
           regeneratorRuntime$1.mark(function _callee2(roomIDParam) {
-            var _this2 = this;
+            var _this3 = this;
 
             var roomID;
             return regeneratorRuntime$1.wrap(function _callee2$(_context2) {
@@ -4230,8 +4244,8 @@ var TcbClientWS =
                         return reject(new Error('roomID is null.'));
                       }
 
-                      _this2.socket.emit('tcb-leave-room', roomID, function (data) {
-                        _this2.roomID = null;
+                      _this3.socket.emit('tcb-leave-room', roomID, function (data) {
+                        _this3.roomID = null;
                         resolve(data);
                       });
                     }));
@@ -4264,17 +4278,17 @@ var TcbClientWS =
       function () {
         var _send = _asyncToGenerator(
           /*#__PURE__*/
-          regeneratorRuntime$1.mark(function _callee3(_ref) {
-            var _this3 = this;
+          regeneratorRuntime$1.mark(function _callee3(_ref2) {
+            var _this4 = this;
 
             var event, message;
             return regeneratorRuntime$1.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
-                    event = _ref.event, message = _ref.message;
+                    event = _ref2.event, message = _ref2.message;
                     return _context3.abrupt("return", new Promise(function (resolve, reject) {
-                      _this3.socket.emit(event, message, function (data) {
+                      _this4.socket.emit(event, message, function (data) {
                         resolve(data);
                       });
                     }));
@@ -4301,9 +4315,9 @@ var TcbClientWS =
        */
       ;
 
-    _proto.receive = function receive(_ref2) {
-      var event = _ref2.event,
-        callback = _ref2.callback;
+    _proto.receive = function receive(_ref3) {
+      var event = _ref3.event,
+        callback = _ref3.callback;
       this.socket.on(event, function (data, ack) {
         utils.isFunction(callback) && callback(data);
         utils.isFunction(ack) && ack(data);

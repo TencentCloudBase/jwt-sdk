@@ -28,7 +28,6 @@ Page({
     this.setData({
       room
     }, async () => {
-      console.log(room)
       await this.tcbClientWS.join(room)
     })
   },
@@ -45,20 +44,20 @@ Page({
     });
   },
 
-  onRoomListUpdate() {
-    this.tcbClientWS.receive({
-      event: 'room-list',
-      callback: (data) => {
-        // console.log(data);
-        let roomsList = Object.keys(data)
-        let roomIndex = roomsList.indexOf(this.data.room)
-        this.setData({
-          roomsList,
-          roomIndex
-        })
-      }
-    });
-  },
+  // onRoomListUpdate() {
+  //   this.tcbClientWS.receive({
+  //     event: 'room-list',
+  //     callback: (data) => {
+  //       // console.log(data);
+  //       let roomsList = Object.keys(data)
+  //       let roomIndex = roomsList.indexOf(this.data.room)
+  //       this.setData({
+  //         roomsList,
+  //         roomIndex
+  //       })
+  //     }
+  //   });
+  // },
 
   connectSocket() {
     const token = TcbClientWS.auth.getToken()
@@ -73,10 +72,14 @@ Page({
       // TODO to login
     }
     this.tcbClientWS = new TcbClientWS(config.url, option)
-    this.tcbClientWS.open()
+    this.tcbClientWS.open({
+      connect: () => {
+        this.joinRoom(this.room)
+      }
+    })
 
     this.onMessage()
-    this.onRoomListUpdate()
+    // this.onRoomListUpdate()
   },
 
   async send(e) {
@@ -93,26 +96,17 @@ Page({
     })
   },
 
-  bindPickerChange(e) {
-    let selectedIndex = e.detail.value
-
-    if (selectedIndex === this.data.roomIndex) {
-      return
-    }
-
-    let room = this.data.roomsList[selectedIndex]
-
-    this.joinRoom(room)
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.room = options.room || 'Lobby'
     this.connectSocket();
-    let room = options.room || 'Lobby'
-    this.joinRoom(room)
     this.updateUser(wx.getStorageSync('userInfo'))
+
+    wx.setNavigationBarTitle({
+      title: `房间  ${this.room} `
+    })
   },
 
   /**

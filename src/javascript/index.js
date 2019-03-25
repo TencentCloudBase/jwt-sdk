@@ -16,10 +16,16 @@ export default class TcbClientWS {
     /**
      *  建立 WebSocket 连接
      */
-    open() {
+    open({ connect = null, disconnect = null } = {}) {
         this.socket = io(this.url, {
             transports: ['websocket'],
             ...this.options
+        });
+        this.socket.on('connect', () => {
+            Utils.isFunction(connect) && connect.bind(this)(this.socket);
+        });
+        this.socket.on('disconnect', () => {
+            Utils.isFunction(disconnect) && disconnect.bind(this)(this.socket);
         });
         return this.socket;
     }

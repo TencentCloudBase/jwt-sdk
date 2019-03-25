@@ -13,6 +13,8 @@
 	"appid": "wxcf5102ada68a7ac9",
 	"projectname": "tcb-demo-chatroom",
 	"libVersion": "2.6.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

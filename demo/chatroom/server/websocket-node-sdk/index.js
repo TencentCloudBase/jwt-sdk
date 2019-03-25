@@ -63,6 +63,7 @@ class TcbServerWS {
         else {
             // 将用户信息存放到内存里了
             socket.user = res.result;
+            return res.result;
         }
     }
 
@@ -94,6 +95,11 @@ class TcbServerWS {
             // 监听正在断开连接的事件
             socket.on('disconnecting', () => {
                 utils.isFunction(disconnecting) && disconnecting.bind(this)(socket);
+
+                this.send(socket, {
+                    event: 'tcb-disconnecting',
+                    message: 'ok'
+                });
             });
 
             // 监听已经断开连接的事件
@@ -102,6 +108,11 @@ class TcbServerWS {
                     delete this.sockets[socket.id];
                 }
                 utils.isFunction(disconnect) && disconnect.bind(this)(socket);
+
+                this.send(socket, {
+                    event: 'tcb-disconnect',
+                    message: 'ok'
+                });
             });
 
             // 监听报错事件
@@ -120,6 +131,13 @@ class TcbServerWS {
 
             // 客户端连接成功的事件回调
             utils.isFunction(connect) && connect.bind(this)(socket);
+
+            setTimeout(() => {
+                this.send(socket, {
+                    event: 'tcb-connect',
+                    message: 'ok'
+                });
+            }, 0);
         });
     }
 
@@ -245,7 +263,6 @@ class TcbServerWS {
      * @param {String} logPathParam 用户自定义的log路径
      */
     async log(jsonObj, logPathParam = null) {
-
         if (this.isLogOff) {
             return Promise.resolve();
         }

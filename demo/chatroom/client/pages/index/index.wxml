@@ -1,18 +1,81 @@
-<!--index.wxml-->
 <view class="page">
+  
+  <!-- 创建或加入房间 -->
   <view class="join" wx:if="{{userInfo}}">
-  <image wx:if="{{userInfo}}" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-  <form bindsubmit="join">
-    <input name="room" placeholder="房间名（默认：Lobby）" />
-    <button form-type="submit">加入</button>
-  </form>
+    <image
+      wx:if="{{userInfo}}"
+      class="userinfo-avatar"
+      src="{{userInfo.avatarUrl}}"
+      mode="cover"
+    >
+    </image>
+    <view class="userinfo-userName">{{userInfo.nickName}}</view>
+
+    <view class="join-panel">
+      <view class="join-room">
+        <view>
+          <picker
+              mode="selector"
+              value="{{index}}"
+              range="{{joinType}}"
+              bindchange="bindJoinTypeChange"
+            >
+            <view class="picker">
+              {{joinType[index]}}
+            </view>
+          </picker>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+
+        <view wx-if="{{index == 0}}">
+          <input
+            name="room"
+            placeholder="输入房间号" 
+            bindinput='typeRoom'
+          />
+        </view>
+        <view wx-if="{{index == 1}}">
+          <picker
+              mode="selector"
+              value="{{selectedRoomIndex}}"
+              range="{{joinRooms}}"
+              bindchange="bindJoinRoomChange"
+            >
+            <view class="picker">
+              选择房间：{{joinRooms[selectedRoomIndex]}}
+            </view>
+          </picker>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+
+      </view>
+      <view class="join-action">
+         <button
+          form-type="submit"
+          class="weui-btn"
+          type="primary"
+          bindtap="join"
+        >
+          {{ index == 0 ? '新建并进入房间' : '加入房间' }}
+        </button>
+      </view>
+    </view>
+    <!-- <form bindsubmit="join">
+      
+     
+    </form> -->
   </view>
+  
+  <!-- 授权并登陆 -->
   <view class="login" wx:if="{{!userInfo}}">
     <button
-      open-type='getUserInfo'
+      open-type="getUserInfo"
       bindgetuserinfo="login"
+      class="weui-btn"
+      type="primary"
     >
       登陆
     </button>
   </view>
+
 </view>

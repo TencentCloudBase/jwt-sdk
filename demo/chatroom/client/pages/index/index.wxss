@@ -2,9 +2,6 @@ page,
 .page {
   height: 100%;
   width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 
 .join {
@@ -12,7 +9,7 @@ page,
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40rpx;
+  padding-top: 40rpx;
 }
 
 .join form {
@@ -31,9 +28,63 @@ page,
   border-radius:50%;
 }
 
+.join .userinfo-userName {
+  width: 600rpx;
+  margin: 0 0 20rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.join-panel {
+  width: 100%;
+  padding: 30rpx 20rpx;
+  background-color: #fff;
+}
+
+.join-room {
+  display: flex;
+  padding: 0 20rpx;
+}
+
+.join-room > view:nth-child(1) {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.join-room > view:nth-child(2) {
+  display: flex;
+  flex: 2;
+}
+
+.join-room > view:nth-child(2) input {
+  width: 100%;
+}
+
+.join-room > view:nth-child(2) picker {
+  flex: 3;
+}
+
+.join-room > view:nth-child(2) picker ~ view {
+  flex: 1;
+}
+
+.join-room > view:nth-child(2) .picker {
+  width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.join-action {
+  margin: 20rpx 20rpx 0;
+}
+
 .login {
   position: absolute;
-  width: 60%;
+  width: 90%;
   height: 100rpx;
   left: 0;
   right: 0;

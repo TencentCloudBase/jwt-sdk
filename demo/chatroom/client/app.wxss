@@ -1,7 +1,31 @@
-/**app.wxss**/
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
+@import 'libs/weui.wxss';
+
+page {
+  background-color: #F8F8F8;
+  font-size: 16px;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.weui-cells {
+	margin-top: 0;
+	opacity: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	-webkit-transition: .3s;
+	transition: .3s
+}
+
+.weui-cells:after,
+.weui-cells:before {
+	display: none
+}
+
+.weui-cells_show {
+	opacity: 1;
+	-webkit-transform: translateY(0);
+	transform: translateY(0)
+}
+
+.weui-cell:before {
+	right: 15px
+}
