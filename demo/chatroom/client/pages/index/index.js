@@ -11,7 +11,7 @@ Page({
       '新建房间',
       '已有房间'
     ],
-    selectedRoomIndex: 0,
+    selectedRoomIndex: null,
     joinRooms: [],
     room: null,
   },

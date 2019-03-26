@@ -42,10 +42,14 @@
               bindchange="bindJoinRoomChange"
             >
             <view class="picker">
-              选择房间：{{joinRooms[selectedRoomIndex]}}
+              <text
+                wx-if="{{!selectedRoomIndex}}"
+                class="picker-hint"
+              >点击选择房间</text>{{joinRooms[selectedRoomIndex]}}
             </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
           </picker>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          
         </view>
 
       </view>

@@ -78,6 +78,14 @@ page,
   text-overflow: ellipsis;
 }
 
+.picker-hint {
+  color: #777;
+}
+
+.picker ~ .weui-cell__ft_in-access {
+  margin-top: -20rpx;
+}
+
 .join-action {
   margin: 20rpx 20rpx 0;
 }
