@@ -8,9 +8,10 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
-	"appid": "wxcf5102ada68a7ac9",
+	"appid": "wxb80926470189f5bb",
 	"projectname": "tcb-demo-chatroom",
 	"libVersion": "2.6.1",
 	"simulatorType": "wechat",
