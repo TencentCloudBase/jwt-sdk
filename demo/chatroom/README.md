@@ -95,4 +95,4 @@ tcb deploy --start
 tcb deploy
 ```
 
-* * 在 `client/config/index.js` 的配置文件中，填入稍后本地服务的地址，域名改成该你配置的域名，比如 `wss://chatroom.pai.tcloudbase.com`。同时测试的时候，请在微信开发者工具中，勾选不校验验名和 HTTPS 证书，除非你在小程序的管理后台给该域名配置了白名单。
+* 在 `client/config/index.js` 的配置文件中，填入稍后本地服务的地址，域名改成该你配置的域名，比如 `wss://chatroom.pai.tcloudbase.com`。同时测试的时候，请在微信开发者工具中，勾选不校验验名和 HTTPS 证书，除非你在小程序的管理后台给该域名配置了白名单。
