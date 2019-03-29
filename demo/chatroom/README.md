@@ -13,11 +13,11 @@
 
 * 将本项目 `tcb-websocket-sdk` 下载下来（`git clone` 或者 下载压缩包均可）。
 * 用微信开发者工具，导入 `demo/chatroom`，并填写好小程序 `appid`。
-* 在 `client/config/index.js` 的配置文件中，填入稍后本地服务的地址，本地开发一般是填 `localhost`，默认的 DEMO 地址是 `localhost:1809`。如果后续后台服务端口更改，此处也需要更改。
-* 创建并部署 `cloud/funtions/auth` 云函数。
-* 在 `demo/miniprogram/server` 项目中，运行 `npm i`，安装项目依赖。
-* 在 `demo/miniprogram/server/config` 中，基于 `example.js` 创建 `index.js`，并填好小程序云开发对应的腾讯云账号的 `secretId` 和 `secretKey` (在前置条件已经获取)。如果本地网络有代理，还需要设置 `proxy`。
-* 在 `demo/miniprogram/server` 项目中，运行 `npm start`，启动服务器。
+* 在 `client/config/index.js` 的配置文件中，填入稍后本地服务的地址，本地开发一般是填 `localhost`，默认的 DEMO 地址是 `localhost:3000`。如果后续后台服务端口更改，此处也需要更改。
+* 创建并部署 `cloud/funtions/tcb-auth` 云函数。
+* 在 `demo/chatroom/server` 项目中，运行 `npm i`，安装项目依赖。
+* 在 `demo/chatroom/server/config` 中，基于 `example.js` 创建 `index.js`，并填好小程序云开发对应的腾讯云账号的 `secretId` 和 `secretKey` (在前置条件已经获取)。如果本地网络有代理，还需要设置 `proxy`。
+* 在 `demo/chatroom/server` 项目中，运行 `npm start`，启动服务器。
 
 
 ## 3. H5 DEMO
@@ -35,4 +35,4 @@
 let token = ''; // 填写从小程序里 tcb-token 获取的值
 ```
 
-* 在浏览器打开 `localhost:1809`，这样就可以在web页面和小程序两端，模拟两个用户在房间里对话。 
+* 在浏览器打开 `localhost:3000`，这样就可以在web页面和小程序两端，模拟两个用户在房间里对话。 
