@@ -21,8 +21,8 @@ nvm install 10
 npm i -g --registry=http://mirrors.cloud.tencent.com/npm/ pm2
 
 # install nginx
-# echo yes | yum remove nginx
-# echo yes | sudo yum install nginx
+echo yes | yum remove nginx
+echo yes | sudo yum install nginx
 
 # add root folder for nginx static sites
 sudo rm -rf /data/h5
@@ -78,9 +78,9 @@ server {
 EOF
 
 # start nginx
-systemctl restart nginx.service
-systemctl status nginx.service
-systemctl enable nginx.service
+sudo systemctl start nginx.service
+sudo systemctl status nginx.service
+sudo systemctl enable nginx.service
 
 # count time
 endTime=$(date +%s)
