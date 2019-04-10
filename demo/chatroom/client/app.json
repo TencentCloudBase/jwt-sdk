@@ -9,5 +9,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Pai聊天室",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
