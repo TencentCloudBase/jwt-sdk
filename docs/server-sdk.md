@@ -1,290 +1,68 @@
 # Node SDK 文档
 
-## new TcbServerWS
+## new TcbJwt
 
 ### 参数说明
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| server | object | 是 | | (http.Server) 需要绑定的服务对象
-| options | objefct | 否 | | [socket.io 服务端参数](https://socket.io/docs/server-api/#new-Server-httpServer-options)
+| options | objefct | 否 | | 鉴权相关配置
 
 * options 新增参数
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| namespace | string | 否 | `/` | 命名空间
+| isAutoLogin | boolean | 否 | true | 是否自动登陆
 | isLogOff | boolean | 否 | false | 是否关闭日志打印
+| type | string | 否 | http | 鉴权服务类型, http 或 websocekt
 
 ### 返回值说明
 
 |类型 | 说明
 | --- | ---
-| object | TcbServerWS 生成的对象
-
-* object 对象说明
-
-| 字段 | 类型 | 说明
-| --- | --- | ---
-| io | object | 由 [`require('socket.io').` `new`](https://socket.io/docs/server-api/#Server) 出来的对象
-| sockets | object | 记录 socket.io 的 [Socket](https://socket.io/docs/server-api/#Socket) 对象
-| tcb | object | [`tcb-admin-node`](https://github.com/TencentCloudBase/tcb-admin-node) 初始化后的对象
+| object | TcbJwt 生成的对象
 
 ### 示例
 ```js
-// 接入 Koa2
-const Koa = require('koa');
-const app = new Koa();
-const serve = require('koa-static');
-const TcbServerWS = require('tcb-websocket-js-sdk');
-const server = require('http').Server(app.callback());
-const tcbServerWS = new TcbServerWS(server, { config });
-
-// 添加 namespace
-const tcbServerWS = new TcbServerWS(server, { namespace: '/tcb/', config });
+const tcbJwt = new TcbJwt({
+    type: 'websocket',
+    tcbConfig: {
+        secretId: '', // 腾讯云可操作云开发资源的 secretid
+        secretKey: '', // 腾讯云可操作云开发资源的 secretkey
+    }
+})
 ```
 
-## open
+## init
 
-启动服务器，并监听是否有客户端的链接尝试建立
+自动登陆并获取
 
 ### 参数说明
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| options | objefct | 否 | | 建立 WebSocket 连接参数
-
-* `options` 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| connect | function | 否 | | 客户端成功与服务端建立连接回调 [connect](https://socket.io/docs/server-api/#Event-%E2%80%98connect%E2%80%99)
-| disconnecting | function | 否 | | 客户端与服务端正在断开连接回调 [disconnecting](https://socket.io/docs/server-api/#Event-%E2%80%98disconnecting%E2%80%99)
-| disconnect | function | 否 | | 客户端与服务端断开连接回调 [disconnect](https://socket.io/docs/server-api/#Event-%E2%80%98disconnect%E2%80%99)
-| error | function | 否 | | 错误信息回调 [error](https://socket.io/docs/server-api/#Event-%E2%80%98error%E2%80%99)
+| object | object | 否 | | 传入 `http` 的 `context`，或 `websocket` 对 `socket` 对象，登陆成功则用户信息会存放在 `context.user` 或 `socket.user` 里
 
 * 示例
 ```js
-tcbServerWS.open({
-    open: (socket) => {
-    
-    },
-    close: (socket) => {
-
-    },
-    closing: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
-});
+tcbJwt.inint(socket);
 ```
 
-## close
+## verifyLogin
 
-服务端 socket 断开服务
+检验 `jwt token` 并登陆
 
 ### 参数说明
 
 | 字段 | 类型 | 必填 | 默认值 | 说明
 | --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | 需要断开的 socket
-
-### 示例
-```js
-tcbServerWS.open({
-    open: (socket) => {
-        // 1秒后断开连接
-        setTimeout(() => {
-            tcbServerWS.close(socket);
-        }, 1000);
-    },
-    close: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
-});
-```
-
-## join
-
-加入房间
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | 需要断开的 socket
-| roomID | string | 是 | | 房间ID
-
-### 返回值说明
-
-|类型 | 说明
-| --- | ---
-| Promise | Promise
-
-### 示例
-```js
-tcbServerWS.open({
-    open: (socket) => {
-        tcbServerWS.join(socket, 'Lobby');
-    },
-    close: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
-});
-```
-
-## leave
-
-离开房间
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | 需要断开的 socket
-| roomID | string | 是 | | 房间ID
-
-### 返回值说明
-
-|类型 | 说明
-| --- | ---
-| Promise | Promise
+| token | string | 是 | | `jwt token`
 
 * 示例
 ```js
-tcbServerWS.open({
-    open: (socket) => {
-        tcbServerWS.join(socket, 'Lobby');
-        tcbServerWS.leave(socket, 'Lobby');
-    },
-    close: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
-});
-```
-
-## onJoin
-
-监听加入房间事件
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | socket 对象
-| callback | function | 否 | | 事件回调
-
-## onLeave
-
-监听离开房间事件
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | socket 对象
-| callback | function | 否 | | 事件回调
-
-## send
-
-发送消息
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | 需要断开的 socket
-| options | object | 是 | | 发送参数
-
-* `options` 参数详情
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| event | string | 是 | | 事件名称
-| mode | string | 否 | | 房间ID，`broadcast` 表示广播消息，`room` 表示对房间发送消息，不填代表只给自己发消息
-| roomID | string | 否 | | 房间ID，只有在 `mode` 值为 `room` 的时候才需要填
-| message | object|string | 是 | | 消息数据
-
-### 返回值说明
-
-|类型 | 说明
-| --- | ---
-| Promise | Promise
-
-### 示例
-```js
-tcbServerWS.open({
-    open: (socket) => {
-        tcbServerWS.join(socket, 'Lobby');
-        tcbServerWS.send(socket, {
-            event: 'message',
-            mode: 'room',
-            roomID: 'Lobby',
-            message: {
-                value: 'hello world!'
-            }
-        })
-    },
-    close: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
-});
-```
-
-## receive
-
-### 参数说明
-
-| 字段 | 类型 | 必填 | 默认值 | 说明
-| --- | --- | --- | --- | ---
-| socket | Socket 对象 | 是 | | 需要断开的 socket
-| options | object | 是 | | 接收参数
-
-* `options` 参数详情
-
-| 字段 | 类型 | 必填 | 说明
-| --- | --- | --- | ---
-| event | string | 是 | 事件名称
-| callback | function | 否 | 接收消息回调
-
-### 返回值说明
-
-|类型 | 说明
-| --- | ---
-| Promise | Promise
-
-### 示例
-```js
-tcbServerWS.open({
-    open: (socket) => {
-        tcbServerWS.join(socket, 'Lobby');
-        tcbServerWS.receive(socket, {
-            event: 'message',
-            callback: (data) => {
-                // process data
-            }
-        })
-    },
-    close: (socket) => {
-
-    },
-    error: (err) => {
-
-    }
+let token = 'xxx';
+tcbJwt.verifyLogin(token).then((res) => {
+    console.log(res); // 详细用户信息
 });
 ```
 
@@ -305,7 +83,7 @@ tcbServerWS.open({
 
 ### 示例
 ```js
-tcbServerWS.log({
+tcbJwt.log({
     a: 1
 });
 ```

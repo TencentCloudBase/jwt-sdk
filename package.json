@@ -1,14 +1,15 @@
 {
-  "name": "@cloudbase/websocket-sdk",
-  "version": "0.0.3",
-  "description": "tcb websocket sdk for node and javascript",
-  "main": "./dist/websocket-node-sdk/index.js",
+  "name": "@cloudbase/jwt-sdk",
+  "version": "0.0.1",
+  "description": "tcb websocket sdk for node, javascript and miniprogram",
+  "main": "./dist/jwt-node-sdk/index.js",
+  "browser": "./dist/jwt-js-sdk/index.js",
   "scripts": {
     "dist": "rollup -c ./tools/rollup.base.js --environment INCLUDE_DEPS,BUILD:production"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/TencentCloudBase/tcb-websocket-sdk.git"
+    "url": "http://github.com/TencentCloudBase/jwt-sdk.git"
   },
   "keywords": [
     "tencent",
@@ -29,17 +30,17 @@
     "koa": "^2.6.2",
     "koa-static": "^5.0.0",
     "node-dev": "^3.1.3",
-    "rollup": "^1.1.2",
+    "rollup": "^1.9.3",
     "rollup-copy-plugin": "^0.1.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-copy": "^0.2.3",
-    "rollup-plugin-node-resolve": "^4.0.0"
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-copy": "^1.0.0",
+    "rollup-plugin-node-resolve": "^4.2.2"
   },
   "dependencies": {
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-    "tcb-admin-node": "^1.4.3",
+    "tcb-admin-node": "^1.4.6",
     "weapp.socket.io": "^2.0.1"
   },
   "engines": {

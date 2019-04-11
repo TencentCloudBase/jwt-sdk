@@ -7,8 +7,8 @@ export default [
     {
         input: 'src/mp/index.js',
         output: {
-            name: 'TcbClientWS',
-            file: 'dist/websocket-mp-sdk/index.js',
+            name: 'TcbJwt',
+            file: 'dist/jwt-mp-sdk/index.js',
             format: 'es'
         },
         plugins: [
@@ -16,17 +16,15 @@ export default [
             resolve(), // so Rollup can find `ms`
             commonjs(), // so Rollup can convert `ms` to an ES module
             copy({
-                'src/mp/polyfill.js': 'dist/websocket-mp-sdk/polyfill.js',
-                // 'src/node/index.js': 'dist/tcb-websocket-node-sdk/index.js',
-                // 'src/functions/auth': 'dist/functions',
+                'src/mp/polyfill.js': 'dist/jwt-mp-sdk/polyfill.js'
             })
         ]
     },
     {
         input: 'src/javascript/index.js',
         output: {
-            name: 'TcbClientWS',
-            file: 'dist/websocket-js-sdk/index.js',
+            name: 'TcbJwt',
+            file: 'dist/jwt-js-sdk/index.js',
             format: 'umd'
         },
         plugins: [
@@ -38,14 +36,12 @@ export default [
     {
         input: 'src/node/index.js',
         output: {
-            name: 'TcbServerWS',
-            file: 'dist/websocket-node-sdk/index.js',
-            format: 'cjs'
+            name: 'TcbJwt',
+            file: 'dist/jwt-node-sdk/index.js',
+            format: 'cjs',
         },
         plugins: [
-            // babel(),
-            resolve(), // so Rollup can find `ms`
-            commonjs(), // so Rollup can convert `ms` to an ES module
+            commonjs(),
         ]
     },
 ];

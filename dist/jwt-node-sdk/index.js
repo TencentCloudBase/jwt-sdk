@@ -1,8 +1,11 @@
-const Tcb = require('tcb-admin-node');
+'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var tcbAdminNode = _interopDefault(require('tcb-admin-node'));
+var fs = _interopDefault(require('fs'));
+var path = _interopDefault(require('path'));
+var os = _interopDefault(require('os'));
 
 class TcbJwt {
 
@@ -13,7 +16,7 @@ class TcbJwt {
         this.isLogOff = options.isLogOff || false;
         this.type = options.type || 'http';
 
-        this.tcb = Tcb.init(options.tcbConfig);
+        this.tcb = tcbAdminNode.init(options.tcbConfig);
     }
 
     /**
@@ -107,4 +110,6 @@ class TcbJwt {
     }
 }
 
-module.exports = TcbJwt;
+var node = TcbJwt;
+
+module.exports = node;
