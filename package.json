@@ -1,6 +1,6 @@
 {
   "name": "@cloudbase/jwt-sdk",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "tcb websocket sdk for node, javascript and miniprogram",
   "main": "./dist/jwt-node-sdk/index.js",
   "browser": "./dist/jwt-js-sdk/index.js",

@@ -11,12 +11,18 @@ class TcbJwt {
 
     constructor(options = {}) {
         this.options = options;
+        let {
+            isAutoLogin = true,
+            isLogOff = false,
+            type = 'http',
+            tcb,
+            tcbConfig = {}
+        } = options;
 
-        this.isAutoLogin = options.isAutoLogin || true;
-        this.isLogOff = options.isLogOff || false;
-        this.type = options.type || 'http';
-
-        this.tcb = tcbAdminNode.init(options.tcbConfig);
+        this.isAutoLogin = isAutoLogin;
+        this.isLogOff = isLogOff;
+        this.type = type;
+        this.tcb = tcb || tcbAdminNode.init(tcbConfig);
     }
 
     /**

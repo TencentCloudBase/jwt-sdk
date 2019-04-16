@@ -15,6 +15,8 @@
 | isAutoLogin | boolean | 否 | true | 是否自动登陆
 | isLogOff | boolean | 否 | false | 是否关闭日志打印
 | type | string | 否 | http | 鉴权服务类型, http 或 websocekt
+| tcb | object | 否 | | [tcb-admin-node](https://github.com/TencentCloudBase/tcb-admin-node) 对象，如果填写了 `tcb` 对象，则会忽略 `tcbConfig`
+| tcbConfig | object | 否 | | [tcb-admin-node](https://github.com/TencentCloudBase/tcb-admin-node/blob/master/docs/initialization.md) 初始化配置
 
 ### 返回值说明
 
