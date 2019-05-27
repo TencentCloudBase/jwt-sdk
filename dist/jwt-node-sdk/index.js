@@ -48,7 +48,9 @@ class TcbJwt {
 
         let res = (await this.verifyLogin(token));
         if (res.code || res.result.code) {
-            throw new Error(res.code || res.result.code);
+            let error = new Error(res.message || res.result.message || 'verifyLogin error');
+            error.code = res.code || res.result.code;
+            throw error;
         }
         else {
             // 将用户信息存放到内存里了
@@ -65,7 +67,9 @@ class TcbJwt {
 
         let res = (await this.verifyLogin(token));
         if (res.code || res.result.code) {
-            throw new Error(res.code || res.result.code);
+            let error = new Error(res.message || res.result.message || 'verifyLogin error');
+            error.code = res.code || res.result.code;
+            throw error;
         }
         else {
             // 将用户信息存放到内存里了
